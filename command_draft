@@ -1,0 +1,40 @@
+
+DONE
+=======================================================================
+rails g controller Pages home
+
+rails g model User email password_digest primary_use
+rails g controller Users new index edit show
+
+rails g controller Sessions new
+
+
+rails active_storage:install
+===================================================================
+NOT DONE YET
+================================================================
+rails g model ArtistProfile
+rails g controller ArtistProfile
+
+rails g model Event
+rails g controller Event new index edit show
+
+rails g model Location
+
+sunday:boolean sun_open: sun_close
+ monday:boolean
+ tuesday:boolean
+ wednesday:boolean
+ thursday:boolean
+ friday:boolean
+  saturday:boolean
+
+rails g controller Locations new index edit show
+
+rails g model Bookmark
+rails g controller Bookmarks new index edit show
+
+rails g model Itinerary
+rails g controller
+
+rails g model Notification
