@@ -5,5 +5,9 @@
 <br>
 <p>What this app needs to have:</p>
 <p>
-
+  <% if logged_in? %>
+  <li><%= link_to "Log out", logout_path, method: :delete %></li>
+  <% else %>
+  <li><%= link_to "Log in", login_path %></li>
+  <% end %>
 </p>

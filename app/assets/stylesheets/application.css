@@ -20,7 +20,6 @@ html {
 }
 
 body {
-  position: fixed;
   width: 100vw;
   top: 0;
   font-family: 'sans';
@@ -150,4 +149,12 @@ footer {
 
 .footer div:nth-child(1) div .material-icons {
   font-size: 20px;
+}
+
+.flexcenter {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,0 +1,8 @@
+<%= form_for(@user) do |f| %>
+<%= f.email_field :email, placeholder: 'Enter Your Email Address', class: 'input', required: true %>
+<%= f.select :primary_use, ["Visitor", "Artist", "Organizer"], required: true %>
+<%= f.password_field :password, placeholder: 'Create a Password', class: 'input', required: true %>
+<%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'input', required: true %>
+<%= f.file_field :avatar %>
+<%= f.submit 'Sign up', id:'submit' %>
+<% end %>
