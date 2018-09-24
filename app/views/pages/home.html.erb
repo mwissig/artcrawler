@@ -11,3 +11,13 @@
   <li><%= link_to "Log in", login_path %></li>
   <% end %>
 </p>
+
+<% if logged_in? %>
+  <% if @current_user.primary_use = "Artist" %>
+    <%= render 'layouts/artist' %>
+    <% elsif @current_user.primary_use = "Visitor" %>
+      <%= render 'layouts/visitor' %>
+      <% elsif @current_user.primary_use = "Organizer" %>
+        <%= render 'layouts/organizer' %>
+      <% end %>
+          <% end %>

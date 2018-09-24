@@ -1,2 +1,20 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%# if logged_in? %>
+  <%# if @current_user.primary_use = "Artist" %>
+    <%= render "profiles/newprofile" %><br>
+    <%# end %>
+    <% if @user.profile != nil %>
+      <%= @user.profile.name %><br>
+      <i class="fab fa-instagram"></i>
+      <a href="https://www.instagram.com/<%= @user.profile.instagram %>/">@<%= @user.profile.instagram %></a><br>
+      <i class="fas fa-folder-open"></i>
+      <a href="<%= @user.profile.portfolio %>"><%= @user.profile.portfolio %></a><br>
+      Media:
+      <%= @user.profile.primary_medium %>
+      <% if @user.profile.secondary_medium != nil && @user.profile.secondary_medium != "" %>
+        and
+        <%= @user.profile.secondary_medium %>
+
+      <div class="statement"><%= @user.profile.statement %></div>
+
+      <% end %>
+      <% end %>

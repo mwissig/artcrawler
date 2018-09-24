@@ -1,2 +1,11 @@
 <header><h1>artcrawler</h1></header>
 <div class="crossbar"></div>
+<p>
+  <br><br>
+<% if logged_in? %>
+<%= link_to logout_path, method: :delete do %>
+<h2>
+Log out
+</h2>
+<% end %>
+<% end %>

@@ -1,0 +1,13 @@
+<% if @user.profile != nil %>
+<%   @profile = User.find(params[:id]).profile %>
+<% end %>
+<%= form_for([@user, @profile]) do |f| %>
+<%= f.text_field :name, placeholder: 'Enter Your Name', required: true %>
+<%= f.text_field :portfolio, placeholder: 'http://www.yourportfolio.com' %>
+<%= f.text_field :instagram, placeholder: '@instagram' %>
+<%= f.select :primary_medium, ["Architecture", "Book Arts", "Ceramics", "Conceptual Art", "Craft", "Dance", "Design", "Drawing", "Fashion", "Fiber", "Film and Video", "Illustration", "Installation", "Jewelry", "Mixed Media", "Music", "New Media", "Painting", "Performance", "Photography", "Printmaking", "Relational Art", "Sculpture", "Sound", "Street Art"] %>
+<%= f.select :secondary_medium, ["Architecture", "Book Arts", "Ceramics", "Conceptual Art", "Craft", "Dance", "Design", "Drawing", "Fashion", "Fiber", "Film and Video", "Illustration", "Installation", "Jewelry", "Mixed Media", "Music", "New Media", "Painting", "Performance", "Photography", "Printmaking", "Relational Art", "Sculpture", "Sound", "Street Art"] %>
+<%= f.text_area :statement, placeholder: "Please write a brief artist's statement or bio." %>
+<%= f.file_field :image %> Upload one image to represent your work.
+<%= f.submit 'Create profile', id:'submit' %>
+<% end %>

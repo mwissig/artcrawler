@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show edit update destroy]
+  before_action :find_user, only: %i[show edit index update destroy]
+  before_action :new_profile, only: %i[index update show destroy]
+
+  def index
+
+  end
+
   def new
     @user = User.new
   end
@@ -14,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
+
   end
 
   def edit; end
@@ -39,5 +46,9 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def new_profile
+    @profile = Profile.new
   end
 end

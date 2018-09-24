@@ -1,17 +1,23 @@
+<% if logged_in? %>
 <div class='footer'>
-<div><div class="dot"><i class="material-icons">
+<div><div class="dot">
+  <%= link_to user_path(@current_user) do %>
+  <i class="material-icons">
 account_circle
-</i></div></div>
+</i>
+<% end %>
+</div></div>
 <div><div class="dot"><i class="material-icons">
 map
 </i></div></div>
 <div><div class="dot"><i class="material-icons">
-favorite
+bookmarks
 </i></div></div>
 <div><div class="dot"><i class="material-icons">
 palette
 </i></div></div>
 </div>
+<% end %>
 <footer>
 
 </footer>

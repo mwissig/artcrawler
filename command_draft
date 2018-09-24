@@ -8,18 +8,17 @@ rails g controller Users new index edit show
 
 rails g controller Sessions new
 
-
 rails active_storage:install
+
+rails g model Profile user_id:integer name primary_medium secondary_medium portfolio instagram statement:text
+rails g controller Profiles new index edit show
 ===================================================================
 NOT DONE YET
 ================================================================
-rails g model ArtistProfile
-rails g controller ArtistProfile
-
 rails g model Event
-rails g controller Event new index edit show
+rails g controller Events new index edit show
 
-rails g model Location
+rails g model Location type ["Studio", "Studio Building", "Gallery", "Pop-up", "Bar", "Performance Venue", "Park", "Store", "Other"]
 
 sunday:boolean sun_open: sun_close
  monday:boolean
@@ -31,10 +30,12 @@ sunday:boolean sun_open: sun_close
 
 rails g controller Locations new index edit show
 
-rails g model Bookmark
+rails g model Bookmark user_id:integer profile_id:integer
 rails g controller Bookmarks new index edit show
 
 rails g model Itinerary
 rails g controller
 
 rails g model Notification
+
+["None","Architecture","Book Arts","Ceramics","Conceptual Art","Craft","Dance","Design","Drawing","Fashion","Fiber","Film and Video","Illustration","Installation","Jewelry","Mixed Media","Music","New Media","Painting","Performance","Photography","Printmaking","Relational Art","Sculpture","Sound","Street Art"]
