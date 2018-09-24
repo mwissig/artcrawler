@@ -1,15 +1,21 @@
-<header><h1>artcrawler</h1></header>
+<header>
+  <h1>artcrawler</h1>
+</header>
 <div class="crossbar"></div>
 
 <div id="expand" class="collapse" onclick="expandTopNav()">
   <i class="material-icons" id="expandcollapse">
-unfold_more
-</i>
-<% if logged_in? %>
-<%= link_to logout_path, method: :delete do %>
-<h2>
-Log out
-</h2>
-<% end %>
-<% end %>
+    unfold_more
+  </i>
+  <ul>
+    <% if logged_in? %>
+      <li>
+        <%= link_to logout_path, method: :delete do %>
+        Log out
+      <% end %>
+    </li>
+  <% end %>
+  <li>test
+  </li>
+</ul>
 </div>

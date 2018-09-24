@@ -10,12 +10,12 @@
         <span class="bookmarkbutton">
           <% if Bookmark.where(user_id: @current_user.id, profile_id: pr.id).exists? %>
             <%# link_to user_bookmark_delete_path([@current_user, bk]), method: :delete do %>
-              <i class="material-icons" style="color:black;">
-                bookmark
+            <i class="material-icons" style="color:yellow;">
+              star_rate
               </i>
               <%# end %>
             <% end %>
-            <span>
+          </span>
 
             <% end %>
           </div>

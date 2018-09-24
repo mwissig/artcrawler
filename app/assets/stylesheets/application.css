@@ -64,10 +64,11 @@ header {
 
 #expand {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 0;
+  left: 0;
   z-index: 10;
   text-align: left;
+  width: 100%;
   transition: all .5s linear;
   overflow: hidden;
   padding: 5px;
@@ -79,16 +80,71 @@ header {
 
 .collapse {
   height: 25px;
-  background-color: transparent;
+  background: linear-gradient(transparent, transparent);
 }
-
+.scrollgrid {
+  position: fixed;
+  top: 25px;
+  width: 100vw;
+  display: grid;
+  z-index: 12;
+  grid-template-rows: 50vh 40vh;
+}
+.list {
+    background-color: gray;
+}
+.notifications {
+  padding: 10px;
+}
+.scrollgrid > * {
+  overflow: scroll;
+}
+.selector {
+  position: fixed;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 40%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 40%);
+  height: 50px;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 200px;
+  z-index: 12;
+  width: 80%;
+  text-align: right;
+  background-color: rgba(255, 153, 0, 0.87);
+  border: none;
+}
+.selector select {
+  width: 60%;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+.selector input {
+  width: 15%;
+  background-color: transparent;
+  border: none;
+    font-size: 20px;
+}
 .expanded {
   height: 200px;
   width: 200px;
-  background-color: white;
+  background: linear-gradient(transparent, white 45%);
   border-radius: 5px;
-}
+  border-bottom: gray 1px solid;
 
+}
+.floating {
+  font-size: 20px;
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  transform: rotate(0deg);
+  margin: auto;
+  background-color: white;
+  width: 100%;
+  height: 25px;
+text-align: center;
+}
 footer {
   position: fixed;
   -webkit-clip-path: polygon(0 0, 100% 40%, 100% 100%, 0% 100%);
