@@ -5,3 +5,47 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+# 50.times do
+#   i = rand(0..2)
+#   purp = ["Visitor", "Artist", "Organizer"]
+#   User.create(
+#     email: Faker::Internet.unique.email,
+#     primary_use: purp[i],
+#     password: "password"
+#   )
+# end
+#
+User.all.each do |u|
+  media = ["Architecture", "Book Arts", "Ceramics", "Conceptual Art", "Craft", "Dance", "Design", "Drawing", "Fashion", "Fiber", "Film and Video", "Illustration", "Installation", "Jewelry", "Mixed Media", "Music", "New Media", "Painting", "Performance", "Photography", "Printmaking", "Relational Art", "Sculpture", "Sound", "Street Art"]
+  y = rand(0..24)
+  z = rand(0..24)
+  @profile = u.build_profile(
+
+:name => Faker::Name.name,
+        :portfolio => "http://www.mwissig.com",
+        :instagram => "mwissig",
+        :statement => Faker::Lorem.paragraphs(paragraph_count = 2, supplemental = false),
+        :primary_medium => media[y],
+        :secondary_medium => media[z]
+  )
+  @profile.user_id = u.id,
+    @profile.save!
+end
+#
+# 50.times do
+#   x = rand(6..97)
+#   media = ["Architecture", "Book Arts", "Ceramics", "Conceptual Art", "Craft", "Dance", "Design", "Drawing", "Fashion", "Fiber", "Film and Video", "Illustration", "Installation", "Jewelry", "Mixed Media", "Music", "New Media", "Painting", "Performance", "Photography", "Printmaking", "Relational Art", "Sculpture", "Sound", "Street Art"]
+#   y = rand(0..24)
+#   z = rand(0..24)
+#   Profile.create(
+#     user_id: x,
+#     name: Faker::Name.name,
+#     portfolio: "http://www.google.com",
+#     instagram: "mwissig",
+#     statement: Faker::Lorem.paragraphs(paragraph_count = 2, supplemental = false),
+#     primary_medium: media[y],
+#     secondary_medium: media[z]
+#   )
+# end

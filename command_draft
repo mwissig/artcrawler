@@ -12,6 +12,9 @@ rails active_storage:install
 
 rails g model Profile user_id:integer name primary_medium secondary_medium portfolio instagram statement:text
 rails g controller Profiles new index edit show
+
+rails g model Bookmark user_id:integer profile_id:integer
+rails g controller Bookmarks new index edit show
 ===================================================================
 NOT DONE YET
 ================================================================
@@ -29,9 +32,6 @@ sunday:boolean sun_open: sun_close
   saturday:boolean
 
 rails g controller Locations new index edit show
-
-rails g model Bookmark user_id:integer profile_id:integer
-rails g controller Bookmarks new index edit show
 
 rails g model Itinerary
 rails g controller

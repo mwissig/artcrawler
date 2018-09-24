@@ -1,13 +1,57 @@
 class BookmarksController < ApplicationController
-  def new
-  end
+  before_action :find_bookmark, only: %i[show edit destroy update]
+  before_action :find_user, only: %i[show index]
 
   def index
+    @bookmarks = Bookmark.all
+    @bookmark = Bookmark.new
   end
 
-  def edit
+  def new
+    @bookmark = Bookmark.new
   end
 
-  def show
+  def update
+    if @bookmark.update(bookmark_params)
+      flash[:notice] = 'User updated successfully'
+      redirect_to user_path(@user)
+    else
+      render 'edit'
+    end
+  end
+
+  def create
+    if logged_in?
+      @bookmark = Bookmark.new(bookmark_params)
+      @bookmark.user_id = @current_user.id
+      @bookmark.save
+      if @bookmark.save
+        redirect_back(fallback_location: browse_path)
+      else
+        redirect_back(fallback_location: browse_path)
+      end
+  end
+end
+
+  def show; end
+
+  def edit; end
+
+  def destroy
+    @bookmark.destroy
+  end
+
+  private
+
+  def bookmark_params
+    params.require(:bookmark).permit(:profile_id, :user_id)
+    end
+
+  def find_bookmark
+    @bookmark = Bookmark.find(params[:id])
+  end
+
+  def find_user
+    @user = User.find(params[:user_id])
   end
 end

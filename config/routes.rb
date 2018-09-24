@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
 
-  get 'bookmarks/new'
-  get 'bookmarks/index'
-  get 'bookmarks/edit'
-  get 'bookmarks/show'
+
   root 'pages#home'
+
+  get '/browse' => 'pages#browse'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -18,6 +17,9 @@ Rails.application.routes.draw do
     delete '/delete' => 'users#destroy'
     resources :profiles do
       delete '/delete' => 'profiles#destroy'
+    end
+    resources :bookmarks do
+      delete '/delete' => 'bookmarks#destroy'
     end
   end
 

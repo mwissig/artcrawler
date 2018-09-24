@@ -14,3 +14,24 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+var fold = false;
+
+function zoomIn(div) {
+  console.log('works');
+  console.log(div);
+  document.getElementById('artist' + div).classList.toggle("zoom");
+  document.getElementById('info' + div).classList.toggle("hidden");
+  document.getElementById('browseart').classList.toggle("split");
+}
+
+function expandTopNav() {
+  document.getElementById("expand").classList.toggle("expanded");
+  if (fold == false) {
+  document.getElementById("expandcollapse").innerHTML = "unfold_less";
+  fold = true;
+}
+  else {
+    document.getElementById("expandcollapse").innerHTML = "unfold_more";
+    fold = false;
+  }
+}

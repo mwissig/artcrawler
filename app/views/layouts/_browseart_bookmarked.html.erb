@@ -1,5 +1,6 @@
 <div class="browseart" id='browseart'>
-  <% @profiles.each do |pr| %>
+  <% @user.bookmarks.each do |b| %>
+  <% pr = Profile.find_by(id: b.profile_id) %>
     <div class="artist"  id="artist<%=pr.id.to_s %>" style="background-image: url('<%= pr.image.attachment.nil? ? 'https://picsum.photos/200/300/?random/' + pr.id.to_s + '' :  rails_blob_url(pr.image) %>')" onclick="zoomIn('<%=pr.id.to_s %>')">
     <div class="artistname">  <%= link_to user_path(pr.user) do %>
         <h3><%= pr.name %></h3>
@@ -13,17 +14,6 @@
                 bookmark
               </i>
               <%# end %>
-              <% else %>
-
-                <%= form_for([@current_user, @bookmark]) do |f| %>
-                <%= f.hidden_field :profile_id, value: pr.id %>
-                <button>
-                  <i class="material-icons">
-                    bookmark
-                  </i>
-                </button>
-              <% end %>
-
             <% end %>
             <span>
 
@@ -33,7 +23,8 @@
 
         <% end %>
       </div>
-  <% @profiles.each do |pr| %>
+      <% @user.bookmarks.each do |b| %>
+      <% pr = Profile.find_by(id: b.profile_id) %>
       <div class="littleinfobox hidden" id="info<%=pr.id.to_s %>">
 <p>      <i class="fab fa-instagram"></i>
   <a href="https://www.instagram.com/<%= pr.instagram %>/">@<%= pr.instagram %></a><br>
