@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 
 
+  get 'events/new'
+  get 'events/index'
+  get 'events/edit'
+  get 'events/show'
   root 'pages#home'
 
   get '/browse' => 'pages#browse'

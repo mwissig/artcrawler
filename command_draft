@@ -15,18 +15,29 @@ rails g controller Profiles new index edit show
 
 rails g model Bookmark user_id:integer profile_id:integer
 rails g controller Bookmarks new index edit show
+
+pagination
+
+rails g model Event start_date:date end_date:date neighborhood:string city:string state:string description:text website:string private:boolean user_id:integer
+rails g controller Events new index edit show
 ===================================================================
 NOT DONE YET
 ================================================================
 
 enable Delete for Bookmarks
 
-pagination
+f.input :my_boolean, as: :boolean do
+  f.check_box :my_boolean, {}, "true", "false"
+end
+
+or
+
+f.input :my_boolean, input_html: { checked: @object.my_boolean }
+
 
 regional search (separate event address into multiple fields to access state?)
 
-rails g model Event start_date:date end_date:date area:string city:string state:string country:string description:text website:string private:boolean user_id:integer
-rails g controller Events new index edit show
+
 
 ["Bar", "Gallery", "Museum", "Park", "Performance Venue", "Pop-up", "Store", "Studio Building", "Studio", "Other"]
 

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2018-09-25
+  end_date: 2018-09-25
+  neighborhood: MyString
+  city: MyString
+  state: MyString
+  description: MyText
+  website: MyString
+  private: false
+  user_id: 1
+
+two:
+  start_date: 2018-09-25
+  end_date: 2018-09-25
+  neighborhood: MyString
+  city: MyString
+  state: MyString
+  description: MyText
+  website: MyString
+  private: false
+  user_id: 1

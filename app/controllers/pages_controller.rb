@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   end
   def browse
         @bookmark = Bookmark.new
-        @profiles = Profile.all.limit(10)
+        @profiles = Profile.order(id: :desc).paginate(:page => params[:page], :per_page => 20)
+
   end
 end

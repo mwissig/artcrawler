@@ -249,8 +249,24 @@ footer {
   visibility: visible;
   z-index: 0;
   transition: visibility .1s linear;
+  margin: 50px 0;
+  border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
 }
-
+.paginate {
+  position: fixed;
+  z-index: 12;
+  top: 30px;
+  margin: 0 auto;
+  height: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  overflow-x: scroll;
+}
 .split {
   display: block;
   visibility: collapse;

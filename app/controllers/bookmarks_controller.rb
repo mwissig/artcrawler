@@ -5,6 +5,16 @@ class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
+  p @bookmarks
+    @ids = []
+    @user.bookmarks.each do |b|
+      @ids << b.profile_id
+    end
+    p @ids
+      pr = Profile.find(@ids)
+      pr = Profile.where(id: pr.map(&:id))
+      p pr
+      @profiles = pr.order(id: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def new

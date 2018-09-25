@@ -20,6 +20,7 @@ function zoomIn(div) {
   document.getElementById('artist' + div).classList.toggle("zoom");
   document.getElementById('info' + div).classList.toggle("hidden");
   document.getElementById('browseart').classList.toggle("split");
+  document.getElementById('paginate').classList.toggle("hidden");
 }
 
 function expandTopNav() {
