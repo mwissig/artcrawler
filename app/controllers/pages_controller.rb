@@ -1,9 +1,46 @@
 class PagesController < ApplicationController
-  def home
-  end
-  def browse
-        @bookmark = Bookmark.new
-        @profiles = Profile.order(id: :desc).paginate(:page => params[:page], :per_page => 20)
+  def home; end
 
+  def browse
+    @bookmark = Bookmark.new
+    @profiles = Profile.order(id: :asc).paginate(page: params[:page], per_page: 20)
   end
+
+  def events
+    @events = Event.all.where("end_date > ?", Time.now.to_date - 7).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+    if logged_in?
+      if @events.where(city: @current_user.city) != nil
+        @events = Event.all.where("end_date > ? AND city = ?", Time.now.to_date - 7, @current_user.city).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+        @title = 'Events in ' + @current_user.city + ', ' + @current_user.state + ''
+      elsif @events.where(city: @current_user.city) != nil
+        @events = Event.all.where("end_date > ? AND state = ?", Time.now.to_date - 7, @current_user.state).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+        @title = 'Events in ' + @current_user.state + ''
+      else
+        @title = 'All Events'
+        @events = Event.all.where("end_date > ?", Time.now.to_date - 7).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+    end
+    else
+      @title = 'All Events'
+  @events = Event.all.where("end_date > ?", Time.now.to_date - 7).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+                end
+  end
+
+  def events_by_state
+    if logged_in?
+        @events = Event.all.where("end_date > ? AND state = ?", Time.now.to_date - 7, @current_user.state).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+  end
+  end
+
+  def events_by_city
+    if logged_in?
+    @events = Event.all.where("end_date > ? AND city = ?", Time.now.to_date - 7, @current_user.city).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+  end
+  end
+
+
+    def events_all
+          if logged_in?
+      @events = Event.all.where("end_date > ?", Time.now.to_date - 7).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+    end
+      end
 end

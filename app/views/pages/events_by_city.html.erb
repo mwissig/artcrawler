@@ -1,0 +1,22 @@
+<div class="paginate digg_pagination" id="paginate"><%= will_paginate @events, :previous_label => '←', :next_label => '→' %></div>
+<div class="flexcenter">
+  <div class="container eventsbox">
+    <% if logged_in? %>
+    <h2>Events in
+      <%= @current_user.city %>,
+      <%= @current_user.state %></h2>
+      <% if @events.where(city: @current_user.city) != nil %>
+                <%= render 'events/eventblurb' %>
+                <% else %>
+                No events in this city.
+<% end %>
+
+                <% end %>
+
+
+
+                <%= render 'events/footer' %>
+              </div>
+            </div>
+
+            <%= render 'layouts/state-svg-defs' %>

@@ -1,0 +1,11 @@
+<div class="paginate digg_pagination" id="paginate"><%= will_paginate @events, :previous_label => '←', :next_label => '→' %></div>
+<div class="flexcenter">
+  <div class="container eventsbox">
+
+                <h2>Events Everywhere</h2>
+                <%= render 'events/eventblurb' %>
+                <%= render 'events/footer' %>
+              </div>
+            </div>
+
+            <%= render 'layouts/state-svg-defs' %>

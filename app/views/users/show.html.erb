@@ -1,20 +1,45 @@
-<%# if logged_in? %>
-  <%# if @current_user.primary_use = "Artist" %>
-    <%= render "profiles/newprofile" %><br>
-    <%# end %>
+<div class="flexcenter">
+  <div>
+    <% if logged_in? %>
+      <% if @current_user.id == @user.id && @current_user.primary_use = "Artist" %>
+        <%# render "profiles/newprofile" %><br>
+      <% end %>
+    <% end %>
     <% if @user.profile != nil %>
-      <%= @user.profile.name %><br>
-      <i class="fab fa-instagram"></i>
-      <a href="https://www.instagram.com/<%= @user.profile.instagram %>/">@<%= @user.profile.instagram %></a><br>
-      <i class="fas fa-folder-open"></i>
-      <a href="<%= @user.profile.portfolio %>"><%= @user.profile.portfolio %></a><br>
-      Media:
-      <%= @user.profile.primary_medium %>
-      <% if @user.profile.secondary_medium != nil && @user.profile.secondary_medium != "" %>
-        and
-        <%= @user.profile.secondary_medium %>
 
-      <div class="statement"><%= @user.profile.statement %></div>
+      <div
+        class="artist zoom profile"
+        style="background-image: url('<%= @user.profile.image.attachment.nil? ? 'https://picsum.photos/200/300/?random/' + @user.profile.id.to_s + '' :  rails_blob_url(@user.profile.image) %>')">
+<div class="statement-grid" id="statement-grid">
+        <div class="statement" onclick="expandProfileTop()">
+          <h3><%= @user.profile.name %></h3>
+          <ul>
+            <li>
+              <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/<%= @user.profile.instagram %>/">@<%= @user.profile.instagram %></a>
+            </li>
+            <li>
+              <i class="fas fa-folder-open"></i>
+              <a href="<%= @user.profile.portfolio %>"><%= @user.profile.portfolio %></a>
+            </li>
+          </ul>
+          Media:
+          <%= @user.profile.primary_medium %>
+          <% if @user.profile.secondary_medium != nil && @user.profile.secondary_medium != "" %>
+            and
+            <%= @user.profile.secondary_medium %><br>
+            <%= @user.city + ", " + @user.state %>
+                        <p>Show upcoming and recent events here</p>
+          </div>
+          <div class="statement" onclick="expandProfileBottom()">
 
+            <p><%= @user.profile.statement %></p>
+
+          </div>
+
+        <% end %>
       <% end %>
-      <% end %>
+        </div>
+    </div>
+
+  </div>

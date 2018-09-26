@@ -28,7 +28,13 @@ body {
   margin: 0 auto;
   text-align: center;
 }
-
+.help {
+width: 0;
+height: 0;
+background-color: rgba(44, 38, 45, 0.71);
+color: white;
+padding: 100px 5px;
+}
 h1, h2 {
   font-family: 'manbow';
   margin: 0;
@@ -66,7 +72,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 20;
   text-align: left;
   width: 100%;
   transition: all .5s linear;
@@ -199,6 +205,15 @@ footer {
   z-index: 11;
 }
 
+.footer div:nth-child(5) div {
+  height: 50px;
+  width: 50px;
+}
+
+.footer div:nth-child(5) div .material-icons {
+  font-size: 40px;
+}
+
 .footer div:nth-child(4) div {
   height: 45px;
   width: 45px;
@@ -259,13 +274,12 @@ footer {
   z-index: 12;
   top: 30px;
   margin: 0 auto;
-  height: 20px;
+  height: auto;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  overflow-x: scroll;
 }
 .split {
   display: block;
@@ -338,7 +352,6 @@ footer {
 .artist a {
   text-decoration: none;
   color: white;
-  font-size: 12px;
   margin: 0;
 }
 
@@ -349,4 +362,55 @@ footer {
 .artist h3 {
   margin: 0;
   text-shadow: 0 0 1px black;
+}
+.profile {
+  top: 40px;
+  background-size: cover;
+  overflow-y: scroll;
+}
+.profile a {
+  color: black;
+}
+.gmap_canvas {
+  overflow: hidden;
+  padding-top: 56.25%;
+  position: relative;
+}
+#map .gmap_canvas {
+  height: 30vh;
+}
+.gmap_canvas iframe {
+  border: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.eventblurb {
+  margin: 5px 5px;
+  padding: 5px;
+
+  width: 100vw;
+}
+.eventsbox div:nth-child(odd) {
+    background: rgb(196, 217, 216);
+    -webkit-clip-path: polygon(5% 0, 100% 0%, 95% 100%, 0% 100%);
+    clip-path: polygon(5% 0, 100% 0%, 95% 100%, 0% 100%);
+}
+.eventsbox div:nth-child(even) {
+    background: rgb(215, 206, 226);
+  -webkit-clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+  }
+  .eventsbox h2 {
+    background: rgb(196, 217, 216);
+    -webkit-clip-path: polygon(5% 0, 100% 0%, 95% 100%, 0% 100%);
+    clip-path: polygon(5% 0, 100% 0%, 95% 100%, 0% 100%);
+    }
+#expand ul li {
+  font-size: 18px;
+}
+#expand a {
+  text-decoration: none;
 }

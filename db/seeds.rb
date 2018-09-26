@@ -19,16 +19,19 @@
 #
 User.all.each do |u|
   media = ["Architecture", "Book Arts", "Ceramics", "Conceptual Art", "Craft", "Dance", "Design", "Drawing", "Fashion", "Fiber", "Film and Video", "Illustration", "Installation", "Jewelry", "Mixed Media", "Music", "New Media", "Painting", "Performance", "Photography", "Printmaking", "Relational Art", "Sculpture", "Sound", "Street Art"]
+  cities = ["Brooklyn", "Queens", "New York", "Long Island City"]
   y = rand(0..24)
   z = rand(0..24)
+  c = rand(0..3)
   @profile = u.build_profile(
-
-:name => Faker::Name.name,
+        :name => Faker::Name.name,
         :portfolio => "http://www.mwissig.com",
         :instagram => "mwissig",
         :statement => Faker::Lorem.paragraphs(paragraph_count = 2, supplemental = false),
         :primary_medium => media[y],
-        :secondary_medium => media[z]
+        :secondary_medium => media[z],
+        :city => cities[c],
+        :state => "NY"
   )
   @profile.user_id = u.id,
     @profile.save!

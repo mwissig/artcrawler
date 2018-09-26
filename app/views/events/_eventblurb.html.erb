@@ -1,0 +1,24 @@
+<% @events.each do |e| %>
+<% if (Time.now.to_date - e.start_date).to_i >= -7 %>
+
+<div class="eventblurb" style="background: rgba(255, 214, 68, 0.84);">
+  <% else %>
+  <div class="eventblurb">
+  <% end %>
+  <% if logged_in? %>
+<% if e.state == @current_user.state %>
+  <svg class="icon icon-state-<%=  e.state %>" style="fill: rgba(255, 214, 68, 0.84);">
+    <use xlink:href="#icon-state-<%=  e.state  %>"></use>
+  </svg>
+  <% else %>
+  <svg class="icon icon-state-<%=  e.state %>">
+    <use xlink:href="#icon-state-<%=  e.state  %>"></use>
+  </svg>
+  <% end %>
+  <% end %>
+  <%= link_to user_event_path(e.user, e) do %>
+<b>  <%= e.title %> </b><br>
+  <%= e.neighborhood + ", " + e.city + ", " + e.state %><br><%= e.start_date.strftime("%b %e '%y") %> to <%= e.end_date.strftime("%b %e '%y") %>
+<% end %>
+</div>
+<% end %>

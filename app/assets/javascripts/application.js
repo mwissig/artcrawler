@@ -14,14 +14,15 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-var fold = false;
-
-function zoomIn(div) {
-  document.getElementById('artist' + div).classList.toggle("zoom");
-  document.getElementById('info' + div).classList.toggle("hidden");
-  document.getElementById('browseart').classList.toggle("split");
-  document.getElementById('paginate').classList.toggle("hidden");
+function expandProfileTop() {
+  document.getElementById("statement-grid").classList.toggle("statementGridExpandTop");
+  document.getElementById("statement-grid").classList.remove("statementGridExpandBottom");
 }
+function expandProfileBottom() {
+  document.getElementById("statement-grid").classList.toggle("statementGridExpandBottom");
+  document.getElementById("statement-grid").classList.remove("statementGridExpandTop");
+}
+
 
 function expandTopNav() {
   document.getElementById("expand").classList.toggle("expanded");
@@ -33,4 +34,13 @@ function expandTopNav() {
     document.getElementById("expandcollapse").innerHTML = "unfold_more";
     fold = false;
   }
+}
+
+var fold = false;
+
+function zoomIn(div) {
+  document.getElementById('artist' + div).classList.toggle("zoom");
+  document.getElementById('info' + div).classList.toggle("hidden");
+  document.getElementById('browseart').classList.toggle("split");
+  document.getElementById('paginate').classList.toggle("hidden");
 }

@@ -27,6 +27,8 @@ class BookmarksController < ApplicationController
       redirect_to user_path(@user)
     else
       render 'edit'
+      msg = @bookmark.errors.full_messages
+flash.now[:error] = msg
     end
   end
 
@@ -39,6 +41,8 @@ class BookmarksController < ApplicationController
         redirect_back(fallback_location: browse_path)
       else
         redirect_back(fallback_location: browse_path)
+        msg = @bookmark.errors.full_messages
+flash.now[:error] = msg
       end
   end
 end

@@ -3,28 +3,40 @@ DONE
 =======================================================================
 rails g controller Pages home
 
-rails g model User email password_digest primary_use
+1 rails g model User email password_digest primary_use
 rails g controller Users new index edit show
 
 rails g controller Sessions new
 
-rails active_storage:install
+2, 3 rails active_storage:install
 
-rails g model Profile user_id:integer name primary_medium secondary_medium portfolio instagram statement:text
+4 rails g model Profile user_id:integer name primary_medium secondary_medium portfolio instagram statement:text
 rails g controller Profiles new index edit show
 
-rails g model Bookmark user_id:integer profile_id:integer
+5 rails g model Bookmark user_id:integer profile_id:integer
 rails g controller Bookmarks new index edit show
 
-pagination
+pagination with will_paginate
 
-rails g model Event start_date:date end_date:date neighborhood:string city:string state:string description:text website:string private:boolean user_id:integer
+6 rails g model Event start_date:date end_date:date neighborhood:string city:string state:string description:text website:string private:boolean user_id:integer
 rails g controller Events new index edit show
+
+rails g model Location type:string name:string event:id:integer user_id:integer description:text address:string suite:string
+
+rails g controller Locations new index edit show
 ===================================================================
 NOT DONE YET
 ================================================================
 
 enable Delete for Bookmarks
+enable edit and delete for Users
+enable edit and delete for profiles
+enable edit and delete for events
+sort artists by location
+avatar upload page
+show avatar on user page
+create search functions for events, artists, and locations
+style forms
 
 f.input :my_boolean, as: :boolean do
   f.check_box :my_boolean, {}, "true", "false"
@@ -37,23 +49,26 @@ f.input :my_boolean, input_html: { checked: @object.my_boolean }
 
 regional search (separate event address into multiple fields to access state?)
 
+https://www.google.com/maps/place/Bushwick,+Brooklyn,+NY/
 
 
 ["Bar", "Gallery", "Museum", "Park", "Performance Venue", "Pop-up", "Store", "Studio Building", "Studio", "Other"]
 
-rails g model Location type:string name:string event:id:integer user_id:integer description:text address:string
+
 
 rails g model Locationtime location_id:integer sunday:boolean sun_open:time sun_close:time monday:boolean mon_open:time mon_close:time tuesday:boolean tues_open:time tues_close:time wednesday:boolean weds_open:time weds_close:time thursday:boolean thurs_open:time thurs_close:time friday:boolean fri_open:time fri_close:time saturday:boolean sat_open:time sat_close:time
 
 rails g model Locationattributes asl:boolean child_friendly:boolean gn_restrooms:boolean spanish:boolean seating:boolean no_stairs:boolean wheelchair:boolean
 free_admission:boolean free_art:boolean free_drinks:boolean free_food:boolean free_merch:boolean free_raffle:boolean buy_admission:boolean buy_art:boolean buy_drinks:boolean buy_food:boolean buy_merch:boolean buy_raffle:boolean official:boolean benefit:boolean checkpoint:boolean juried_show:boolean open_call:boolean solo_show:boolean duo_show:boolean group_show:boolean
 
-rails g controller Locations new index edit show
+
 rails g controller Locationtimes new index edit show
 rails g controller Locationattributes new index edit show
 
 rails g model Itinerary
 rails g controller
+
+enable maps with waypoints
 
 rails g model Notification
 

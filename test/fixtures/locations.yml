@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  name: MyString
+  event: 
+  user_id: 1
+  description: MyText
+  address: MyString
+  suite: MyString
+
+two:
+  type: 
+  name: MyString
+  event: 
+  user_id: 1
+  description: MyText
+  address: MyString
+  suite: MyString

@@ -1,8 +1,10 @@
 <%= form_for(@user) do |f| %>
-<%= f.email_field :email, placeholder: 'Enter Your Email Address', required: true %>
-<%= f.select :primary_use, ["Visitor", "Artist", "Organizer"], required: true %>
-<%= f.password_field :password, placeholder: 'Create a Password', required: true %>
-<%= f.password_field :password_confirmation, placeholder: 'Confirm Password', required: true %>
-<%= f.file_field :avatar %> (note: move avatar field to user profile edit page)
+<%= f.email_field :email, placeholder: 'Enter Your Email Address', required: true %><br>
+<%= f.select :primary_use, ["Visitor", "Artist", "Organizer"], required: true %><br>
+<%= f.text_field :city, placeholder: "City" %><br>
+<%= f.select :state, options_for_select(us_states) %><br>
+<%= f.password_field :password, placeholder: 'Create a Password', required: true %><br>
+<%= f.password_field :password_confirmation, placeholder: 'Confirm Password', required: true %><br>
+<%= f.file_field :avatar %> (note: move avatar field to user profile edit page)<br>
 <%= f.submit 'Sign up', id:'submit' %>
 <% end %>

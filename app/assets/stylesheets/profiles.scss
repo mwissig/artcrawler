@@ -1,9 +1,59 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.statement-grid {
+  position: fixed;
+    top: 50%;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-rows: 9em auto;
+  height: 40vh;
+}
+.statementGridExpandTop {
+    grid-template-rows: 90% 10% !important;
+}
+.statementGridExpandTop:first-child {
+  height: 80vh;
+  top: 50px;
+}
+.statementGridExpandBottom {
+  top: 50px;
+    grid-template-rows: 10% 90% !important;
+}
+.statementGridExpandBottom:nth-child(2) {
+  height: 80vh;
+  top: 50px;
+}
+.statementGridExpandBottom:first-child {
+  height: 80vh;
+  top: 50px;
+}
 .statement {
   border-radius: 5px;
-  border: 1px solid black;
-  padding: 5px;
+  border: none;
+  background: white;
+  padding: 8px;
+  margin: 8px;
+  max-height: 100%;
+  text-align: justify;
+  line-height: 1.2;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.statement h3 {
+  text-align: center;
+}
+.statement p {
+  margin: 0;
+}
+.statement p:first-child:first-letter {
+  color: #d74100;
+  float: left;
+  font-family: 'manbow';
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 0.9;
+  padding-top: 5px;
+  padding-right: 6px;
+  padding-left: 3px;
 }

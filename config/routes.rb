@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
-
-
-  get 'events/new'
-  get 'events/index'
-  get 'events/edit'
-  get 'events/show'
+  get 'locations/new'
+  get 'locations/index'
+  get 'locations/edit'
+  get 'locations/show'
   root 'pages#home'
 
   get '/browse' => 'pages#browse'
+  get '/events' => 'pages#events'
+  get '/events/city' => 'pages#events_by_city'
+    get '/events/state' => 'pages#events_by_state'
+      get '/events/all' => 'pages#events_all'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -24,6 +26,9 @@ Rails.application.routes.draw do
     end
     resources :bookmarks do
       delete '/delete' => 'bookmarks#destroy'
+    end
+    resources :events do
+      delete '/delete' => 'events#destroy'
     end
   end
 

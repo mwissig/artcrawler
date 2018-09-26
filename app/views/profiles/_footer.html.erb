@@ -1,0 +1,19 @@
+<% if logged_in? %>
+<div class="eventsfooter">
+<%= link_to events_city_path do %>
+      <i class="material-icons">
+        location_city
+      </i>
+<% end %>
+<%= link_to events_state_path do %>
+      <svg class="icon icon-state-<%= @current_user.state %>">
+        <use xlink:href="#icon-state-<%= @current_user.state %>"></use>
+      </svg>
+<% end %>
+<%= link_to browse_path do %>
+      <i class="material-icons">
+        public
+      </i>
+<% end %>
+  </div>
+<% end %>

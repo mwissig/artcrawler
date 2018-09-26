@@ -17,6 +17,8 @@ class ProfilesController < ApplicationController
         redirect_to user_path(@user)
       else
         render 'edit'
+        msg = @profile.errors.full_messages
+flash.now[:error] = msg
       end
     end
 
@@ -27,6 +29,8 @@ class ProfilesController < ApplicationController
         redirect_to user_profile_path(@user, @profile)
       else
         render 'new'
+        msg = @profile.errors.full_messages
+flash.now[:error] = msg
       end
     end
 

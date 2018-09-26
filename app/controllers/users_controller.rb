@@ -16,6 +16,8 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       render 'new'
+      msg = @user.errors.full_messages
+flash.now[:error] = msg
     end
   end
 
@@ -31,6 +33,8 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
+      msg = @user.errors.full_messages
+flash.now[:error] = msg
     end
   end
 

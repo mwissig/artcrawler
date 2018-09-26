@@ -1,0 +1,17 @@
+    <div class="flexcenter">
+<div class="newevent">
+<%= form_for([@user, @event]) do |f| %>
+
+<%= f.text_field :title, placeholder: "Name of Your Event" %><br>
+<%= f.date_select "start_date", start_year: Date.today.year,order: [:month, :day, :year] %><br>
+<%= f.date_select "end_date", start_year: Date.today.year,order: [:month, :day, :year] %><br>
+<%= f.text_field :neighborhood, placeholder: "Neighborhood" %><br>
+<%= f.text_field :city, placeholder: "City" %><br>
+<%= f.select :state, options_for_select(us_states) %><br>
+<%= f.text_area :description %><br>
+<%= f.text_field :website, placeholder: "http://www.yourorganization.com" %><br>
+Make event private? (You will have to manually approve all entries)<%= f.check_box :private, check_box_html: { checked: @event.private } %><br>
+<%= f.submit 'Go', id:'submit' %>
+<% end %>
+</div>
+  </div>
