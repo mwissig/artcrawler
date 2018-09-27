@@ -25,8 +25,12 @@ Rails.application.routes.draw do
     end
     resources :events do
       delete '/delete' => 'events#destroy'
+      get '/artists' => 'pages#artists'
       resources :locations do
             delete '/delete' => 'locations#destroy'
+            resources :listings do
+                  delete '/delete' => 'listings#destroy'
+            end
       end
     end
   end

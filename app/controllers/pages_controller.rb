@@ -43,4 +43,17 @@ class PagesController < ApplicationController
       @events = Event.all.where("end_date > ?", Time.now.to_date - 7).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
     end
       end
+
+      def artists
+        @listings = []
+        @event = Event.find(params[:event_id])
+        @user = @event.user
+
+        @event.locations.each do |loc|
+          @listings << loc.listings
+        end
+           @listings = @listings.paginate(page: params[:page], per_page: 20)
+          @bookmark = Bookmark.new
+
+      end
 end

@@ -1,9 +1,12 @@
+<div class="eventbuttons"><div><%= link_to "All Artists", user_event_artists_path(@user, @event) %></div><div><%=link_to "All Studios", user_event_locations_path(@user, @event) %></div><div>My Itinerary</div></div>
 <div class="flexcenter">
   <div>
-<%= @event.title %>
-<br>
-In <%= @event.neighborhood + ", " + @event.city + ", " + @event.state %>
-<br>
+    <div class="mapouter eventmap"><div class="gmap_canvas"><iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%= @event.neighborhood + "%2C%20" + @event.city + "%2C%20" + @event.state %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
+
+
+<div class="floateventdesc"><h3><%= @event.title %></h3>
+<%= @event.neighborhood + ", " + @event.city + ", " + @event.state %>
+
 <%= @event.start_date.strftime("%A, %B %e, %Y") %> to <%= @event.end_date.strftime("%A, %B %e, %Y") %><br>
 <% @length = (@event.end_date - @event.start_date).to_i + 1 %>
 <%= @length %> days long<br>
@@ -24,11 +27,11 @@ In <%= @event.neighborhood + ", " + @event.city + ", " + @event.state %>
   <% p @days %>
   <% elsif @length <= 0 %>
   Invalid date, end time must be after start time.
-<% end %>
+<% end %></div>
+<div class="eventdesc">
+<p> <%= @event.description %></p></div>
 
-<p> <%= @event.description %></p>
 
-<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= @event.neighborhood + "%2C%20" + @event.city + "%2C%20" + @event.state %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
 
 </div>
 </div>

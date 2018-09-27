@@ -12,6 +12,7 @@
         style="background-image: url('<%= @user.profile.image.attachment.nil? ? 'https://picsum.photos/200/300/?random/' + @user.profile.id.to_s + '' :  rails_blob_url(@user.profile.image) %>')">
 <div class="statement-grid" id="statement-grid">
         <div class="statement" onclick="expandProfileTop()">
+          <div class="avatar" id="avatar" style="background-image: url('<%= @user.avatar.attachment.nil? ? 'https://loremflickr.com/100/100/headshot?random=' + @user.profile.id.to_s + '' :  rails_blob_url(@user.avatar) %>')"></div>
           <h3><%= @user.profile.name %></h3>
           <ul>
             <li>

@@ -1,0 +1,85 @@
+
+<!--
+<div class="flexcenter">
+  <div> -->
+
+  <% @you_are_listed = false %>
+
+    <div class="paginate digg_pagination" id="paginate"><%= will_paginate @listings, :previous_label => '←', :next_label => '→' %></div>
+<div class="location_scrollgrid">
+  <div class="locationinfo" style="background-image: url('<%= @location.image.attachment.nil? ? 'https://loremflickr.com/320/240/building?lock=' + @location.id.to_s + '' :  rails_blob_url(@location.image) %>')">
+    <div class="artistname">  <%# link_to user_event_location_path() do %>
+      <h3><%= @location.name %></h3>
+        <%= @location.address %>
+        <%# end %></div></div>
+  <div>
+<div class="browselisting" id='browseart'>
+  <% @listings.each do |l| %>
+  <% pr = Profile.find_by(id: l.profile_id) %>
+  <% if logged_in? %>
+  <% if pr == @current_user.profile %>
+    <% @you_are_listed = true %>
+  <% end %>
+    <% end %>
+  <div class="artist"  id="artist<%=pr.id.to_s %>" style="background-image: url('<%= pr.image.attachment.nil? ? 'https://picsum.photos/200/300/?random/' + pr.id.to_s + '' :  rails_blob_url(pr.image) %>')" onclick="zoomIn('<%=pr.id.to_s %>')">
+    <% if logged_in? %>
+
+      <span class="bookmarkbutton">
+        <% if Bookmark.where(user_id: @current_user.id, profile_id: pr.id).exists? %>
+          <%# link_to user_bookmark_delete_path([@current_user, bk]), method: :delete do %>
+          <i class="material-icons" style="color:yellow;">
+            star_rate
+            </i>
+            <%# end %>
+            <% else %>
+
+              <%= form_for([@current_user, @bookmark]) do |f| %>
+              <%= f.hidden_field :profile_id, value: pr.id %>
+              <button>
+                <i class="material-icons">
+                  bookmark
+                </i>
+              </button>
+            <% end %>
+
+          <% end %>
+          <span>
+
+          <% end %>
+        </div>
+        <div class ="artistinfo">
+          <%= link_to user_path(pr.user) do %>
+              <h3><%= pr.name %></h3>
+              <% end %>
+            <%= pr.primary_medium %>
+              <% if pr.secondary_medium != nil && pr.secondary_medium != "" %>
+                &
+                <%= pr.secondary_medium %></p>
+                          <% end %>
+        </div>
+
+
+      <% end %>
+    </div>
+  </div>
+
+    <% @listings.each do |l| %>
+    <% pr = Profile.find_by(id: l.profile_id) %>
+    <div class="littleinfobox hidden" id="info<%=pr.id.to_s %>">
+<p>      <i class="fab fa-instagram"></i>
+<a href="https://www.instagram.com/<%= pr.instagram %>/">@<%= pr.instagram %></a><br>
+<i class="fas fa-folder-open"></i>
+<a href="<%= pr.portfolio %>"><%= pr.portfolio %></a><br>
+Media:
+<%= pr.primary_medium %>
+<% if pr.secondary_medium != nil && pr.secondary_medium != "" %>
+  and
+  <%= pr.secondary_medium %></p>
+            <% end %>
+    </div>
+    <% end %>
+<% if @you_are_listed == false %>
+<%= render 'newlisting' %>
+<% end %>
+<!-- </div>
+</div> -->

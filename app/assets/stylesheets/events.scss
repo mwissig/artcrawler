@@ -32,14 +32,13 @@
   fill: rgba(69, 89, 85, 0.64);
 }
 .eventblurb .icon {
-  position: absolute;
-  left: 10px;
+  float: left;
   height: 40px;
   width: 40px;
   background: white;
   border-radius: 50%;
   padding: 3px;
-  margin: 0;
+margin-left: 10px;
 }
 .eventblurb a {
   text-decoration: none;

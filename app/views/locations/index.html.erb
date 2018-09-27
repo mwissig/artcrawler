@@ -1,5 +1,4 @@
 
-
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <% locations = [] %>
 <% i = 1 %>
@@ -13,10 +12,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y" type="text/javascript"></script>
     <div id="map" style="width: 100vw; height: 50vh; z-index: 20;"></div>
 <% @locations.each do |lo| %>
-<%= lo.address %><br>
+<%= link_to lo.address, user_event_location_listings_path(@user, @event, lo) %><br>
 <% location = [] %>
 <% address = lo.address.gsub(" ", "+") %>
-<% location << lo.name %>
+<% location << "<div class='mapmarker'><div class='title'><a href='" + user_event_location_listings_path(@user, @event, lo) + "'>" + lo.name + "</a></div><div class='loctype'>" + lo.loc_type + "<br>" + lo.listings.length.to_s + " artists</div><img src='https://loremflickr.com/50/50/colorful?lock=" + lo.id.to_s + "'/></div>" %>
 <% request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y") %>
 <%  response = JSON.parse(request.body) %>
 <% lat = response['results'][0]['geometry']['location']['lat'] %>

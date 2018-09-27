@@ -29,15 +29,24 @@ rails g controller Locations new index edit show
 
 ["None","Architecture","Book Arts","Ceramics","Conceptual Art","Craft","Dance","Design","Drawing","Fashion","Fiber","Film and Video","Illustration","Installation","Jewelry","Mixed Media","Music","New Media","Painting","Performance","Photography","Printmaking","Relational Art","Sculpture","Sound","Street Art"]
 
+https://www.google.com/maps/place/Bushwick,+Brooklyn,+NY/
+
+rails g model Listing location_id:integer profile_id:integer
+rails g controller Listings new index edit show
 ===================================================================
 NOT DONE YET
 ================================================================
 
 enable Delete for Bookmarks
+ajax bookmarks and add to itinerary
+custom map markers
 enable edit and delete for Users
 enable edit and delete for profiles
 enable edit and delete for events
 enable edit and delete for locations
+enable edit and delete for listings
+
+validators on everything
 sort locations by day of week open
 sort artists by location
 avatar upload page
@@ -54,26 +63,17 @@ or
 f.input :my_boolean, input_html: { checked: @object.my_boolean }
 
 
-regional search (separate event address into multiple fields to access state?)
+rails g model Time location_id:integer sunday:boolean sun_open:time sun_close:time monday:boolean mon_open:time mon_close:time tuesday:boolean tues_open:time tues_close:time wednesday:boolean weds_open:time weds_close:time thursday:boolean thurs_open:time thurs_close:time friday:boolean fri_open:time fri_close:time saturday:boolean sat_open:time sat_close:time
 
-https://www.google.com/maps/place/Bushwick,+Brooklyn,+NY/
-
-
-]
-
-
-
-rails g model Locationtime location_id:integer sunday:boolean sun_open:time sun_close:time monday:boolean mon_open:time mon_close:time tuesday:boolean tues_open:time tues_close:time wednesday:boolean weds_open:time weds_close:time thursday:boolean thurs_open:time thurs_close:time friday:boolean fri_open:time fri_close:time saturday:boolean sat_open:time sat_close:time
-
-rails g model Locationattributes asl:boolean child_friendly:boolean gn_restrooms:boolean spanish:boolean seating:boolean no_stairs:boolean wheelchair:boolean
+rails g model Attribute asl:boolean child_friendly:boolean gn_restrooms:boolean spanish:boolean seating:boolean no_stairs:boolean wheelchair:boolean
 free_admission:boolean free_art:boolean free_drinks:boolean free_food:boolean free_merch:boolean free_raffle:boolean buy_admission:boolean buy_art:boolean buy_drinks:boolean buy_food:boolean buy_merch:boolean buy_raffle:boolean official:boolean benefit:boolean checkpoint:boolean juried_show:boolean open_call:boolean solo_show:boolean duo_show:boolean group_show:boolean
 
 
-rails g controller Locationtimes new index edit show
-rails g controller Locationattributes new index edit show
+rails g controller Times new index edit show
+rails g controller Attributes new index edit show
 
-rails g model Itinerary
-rails g controller
+rails g model Waypoint location_id:integer event_id:integer user_id:integer
+rails g controller Waypoints new index edit show
 
 enable maps with waypoints
 
