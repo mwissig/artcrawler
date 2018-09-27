@@ -1,0 +1,17 @@
+<div class="flexcenter">
+<div class="newevent">
+<%= form_for([@user, @event, @location]) do |f| %>
+<%= f.text_field :name, placeholder: "Building Name" %><br>
+<%= f.select :loc_type, options_for_select(location_types) %><br>
+<%= f.text_area :description %><br>
+<%= f.text_field :address, placeholder: "Full Address" %><br>
+<%= f.text_field :suite, placeholder: "Suite/Studio Number" %><br>
+<% if @event.private == true %>
+<%= f.hidden_field :approved, value: false %>
+<% else %>
+<%= f.hidden_field :approved, value: true %>
+<% end %>
+<%= f.submit 'Go', id:'submit' %>
+<% end %>
+</div>
+</div>

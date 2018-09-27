@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'locations/new'
-  get 'locations/index'
-  get 'locations/edit'
-  get 'locations/show'
   root 'pages#home'
 
   get '/browse' => 'pages#browse'
@@ -29,6 +25,9 @@ Rails.application.routes.draw do
     end
     resources :events do
       delete '/delete' => 'events#destroy'
+      resources :locations do
+            delete '/delete' => 'locations#destroy'
+      end
     end
   end
 

@@ -1,2 +1,63 @@
-<h1>Locations#index</h1>
-<p>Find me in app/views/locations/index.html.erb</p>
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<% locations = [] %>
+<% i = 1 %>
+<% if @event.neighborhood != nil %>
+<% @neigh = @event.neighborhood + ",+" %>
+<% end %>
+<% center_request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + @neigh +  @event.city + ",+" + @event.state + "&key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y") %>
+<%  center_response = JSON.parse(center_request.body) %>
+<% clat = center_response['results'][0]['geometry']['location']['lat'] %>
+ <% clng = center_response['results'][0]['geometry']['location']['lng'] %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y" type="text/javascript"></script>
+    <div id="map" style="width: 100vw; height: 50vh; z-index: 20;"></div>
+<% @locations.each do |lo| %>
+<%= lo.address %><br>
+<% location = [] %>
+<% address = lo.address.gsub(" ", "+") %>
+<% location << lo.name %>
+<% request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y") %>
+<%  response = JSON.parse(request.body) %>
+<% lat = response['results'][0]['geometry']['location']['lat'] %>
+ <% lng = response['results'][0]['geometry']['location']['lng'] %>
+
+<% location << lat %>
+<% location << lng %>
+<% location << i %>
+<% i += 1 %>
+<% locations << location %>
+  <% end %>
+  <script>
+  var locations = <%= raw locations %>;
+  var clat = <%= clat %>;
+  var clng = <%= clng %>
+
+  </script>
+
+<script src="/assets/gmap3.js?body=1" type="text/javascript"></script>
+ <script type="text/javascript">
+
+   var map = new google.maps.Map(document.getElementById('map'), {
+     zoom: 13,
+                      center: new google.maps.LatLng(clat, clng),
+     mapTypeId: google.maps.MapTypeId.ROADMAP
+   });
+   var infowindow = new google.maps.InfoWindow();
+
+   var marker, i;
+
+   for (i = 0; i < locations.length; i++) {
+     marker = new google.maps.Marker({
+       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+       map: map
+     });
+
+     google.maps.event.addListener(marker, 'click', (function(marker, i) {
+       return function() {
+         infowindow.setContent(locations[i][0]);
+         infowindow.open(map, marker);
+       }
+     })(marker, i));
+   }
+ </script>

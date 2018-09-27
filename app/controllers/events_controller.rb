@@ -62,6 +62,6 @@ flash.now[:error] = msg
   end
 
   def find_user
-    @user = User.find_by(params[:user_id])
+    @user = @event.user
   end
 end

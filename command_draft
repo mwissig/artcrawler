@@ -24,6 +24,11 @@ rails g controller Events new index edit show
 rails g model Location type:string name:string event:id:integer user_id:integer description:text address:string suite:string
 
 rails g controller Locations new index edit show
+
+["Bar", "Gallery", "Museum", "Park", "Performance Venue", "Pop-up", "Store", "Studio Building", "Studio", "Other"
+
+["None","Architecture","Book Arts","Ceramics","Conceptual Art","Craft","Dance","Design","Drawing","Fashion","Fiber","Film and Video","Illustration","Installation","Jewelry","Mixed Media","Music","New Media","Painting","Performance","Photography","Printmaking","Relational Art","Sculpture","Sound","Street Art"]
+
 ===================================================================
 NOT DONE YET
 ================================================================
@@ -32,6 +37,8 @@ enable Delete for Bookmarks
 enable edit and delete for Users
 enable edit and delete for profiles
 enable edit and delete for events
+enable edit and delete for locations
+sort locations by day of week open
 sort artists by location
 avatar upload page
 show avatar on user page
@@ -52,7 +59,7 @@ regional search (separate event address into multiple fields to access state?)
 https://www.google.com/maps/place/Bushwick,+Brooklyn,+NY/
 
 
-["Bar", "Gallery", "Museum", "Park", "Performance Venue", "Pop-up", "Store", "Studio Building", "Studio", "Other"]
+]
 
 
 
@@ -71,5 +78,3 @@ rails g controller
 enable maps with waypoints
 
 rails g model Notification
-
-["None","Architecture","Book Arts","Ceramics","Conceptual Art","Craft","Dance","Design","Drawing","Fashion","Fiber","Film and Video","Illustration","Installation","Jewelry","Mixed Media","Music","New Media","Painting","Performance","Photography","Printmaking","Relational Art","Sculpture","Sound","Street Art"]
