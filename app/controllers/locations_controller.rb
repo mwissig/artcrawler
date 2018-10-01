@@ -7,6 +7,7 @@ class LocationsController < ApplicationController
     @locations = @event.locations
     @approved_locations = Location.all.where(approved: true)
     @location = Location.new
+    @waypoint = Waypoint.new
   end
 
   def new
@@ -29,12 +30,9 @@ flash.now[:error] = msg
         if logged_in?
     @location.user_id = @current_user.id
        end
-       p @user
-       p @event
-       p @location
      @location.save
     if @location.save
-      redirect_to user_event_location_path(@user, @event, @location)
+      redirect_to user_event_location_listings_path(@user, @event, @location)
     else
       render 'new'
       msg = @location.errors.full_messages

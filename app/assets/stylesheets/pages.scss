@@ -99,3 +99,88 @@
 *:first-child + html .digg_pagination {
   overflow: hidden;
 }
+.home input[type=submit], .login input[type=submit] {
+  background-color: orange;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+  width: 90%;
+  margin: 10px 0;
+  box-shadow: 0 1px 1px black;
+  font-size: 30px;
+}
+.login input {
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+  width: 90%;
+  margin: 10px 0;
+  box-shadow: 0 1px 1px black;
+  font-size: 18px;
+}
+.login select {
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+  width: 100%;
+  float: right;
+  margin: 10px 10px;
+  box-shadow: 0 1px 1px black;
+  font-size: 18px;
+  display: inline;
+  top: 0;
+}
+.login textarea {
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+  width: 90%;
+  height: 150px;
+  margin: 10px 0;
+  box-shadow: 0 1px 1px black;
+  font-size: 18px;
+}
+.login label {
+  display: inline;
+  float: left;
+width: 90%;
+  padding: 0 10px;
+}
+.logingrid {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+.login {
+  width: 100%;
+}
+.home li {
+  list-style: none;
+
+}
+.home ul {
+    padding-left: 0;
+}
+.home {
+  background-image: asset-data-url('map.jpg');
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+.profilenew {
+  margin-top: 150px;
+}
+.infofloat {
+  background: rgb(244, 238, 166);
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 300px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px black;
+  padding: 8px;
+}

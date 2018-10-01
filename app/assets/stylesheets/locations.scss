@@ -41,6 +41,11 @@
   color: black;
   font-weight: bold;
 }
+.floatright {
+position: absolute;
+top: 0;
+right: 10px;
+}
 .floatleft .material-icons {
   color: red;
 }

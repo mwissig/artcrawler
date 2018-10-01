@@ -1,16 +1,15 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<p>What this app needs to have:</p>
-<p>
+<div class="flexcenter home">
+  <div class="fill">
   <% if logged_in? %>
-  <li><%= link_to "Log out", logout_path, method: :delete %></li>
+  <ul>
+  <li><%= button_to "Log out", logout_path, method: :delete %></li>
+  <li><%= button_to "New Event", new_user_event_path(@current_user), method: :get %></li>
+    <li><%= button_to "Edit My Profile", edit_user_path(@current_user), method: :get %></li>
   <% else %>
-  <li><%= link_to "Log in", login_path %></li>
+  <li><%= button_to "Log in", login_path, method: :get  %></li>
+    <li><%= button_to "Create an Account", register_path, method: :get  %></li>
   <% end %>
-</p>
+</ul>
 
 <% if logged_in? %>
   <% if @current_user.primary_use = "Artist" %>
@@ -21,3 +20,5 @@
         <%= render 'layouts/organizer' %>
       <% end %>
           <% end %>
+</div>
+</div>

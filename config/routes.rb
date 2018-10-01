@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'loctimes/new'
+  get 'loctimes/index'
+  get 'loctimes/edit'
+  get 'loctimes/show'
   root 'pages#home'
 
   get '/mymaps' => 'pages#mymaps'

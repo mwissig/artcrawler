@@ -1,10 +1,14 @@
+<h3>Create an Account</h3>
 <%= form_for(@user) do |f| %>
-<%= f.email_field :email, placeholder: 'Enter Your Email Address', required: true %><br>
-<%= f.select :primary_use, ["Visitor", "Artist", "Organizer"], required: true %><br>
-<%= f.text_field :city, placeholder: "City" %><br>
-<%= f.select :state, options_for_select(us_states) %><br>
+<%= f.email_field :email, placeholder: 'Enter Your Email Address', required: true %>
+<div class='logingrid'><div>
+<label>You are here mainly as a...</label></div><div><%= f.select :primary_use, ["Visitor", "Artist", "Organizer"], required: true %></div></div>
+<%= f.text_field :city, placeholder: "What city are you in?", required: true %>
+<div class='logingrid'><div>
+<label>What state are you in?</label>
+</div><div><%= f.select :state, options_for_select(us_states), required: true  %></div></div>
 <%= f.password_field :password, placeholder: 'Create a Password', required: true %><br>
 <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', required: true %><br>
-<%= f.file_field :avatar %> (note: move avatar field to user profile edit page)<br>
+<!-- <%# f.file_field :avatar %> (note: move avatar field to user profile edit page)<br> -->
 <%= f.submit 'Sign up', id:'submit' %>
 <% end %>

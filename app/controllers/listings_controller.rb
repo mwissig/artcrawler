@@ -9,6 +9,7 @@ class ListingsController < ApplicationController
       @approved_listings = Listing.all.where(approved: true)
       @listing = Listing.new
           @bookmark = Bookmark.new
+          @waypoint = Waypoint.new
     end
 
     def new

@@ -1,29 +1,62 @@
 <h1 class="floating">Your bookmarked artists</h1>
 <div class="scrollgrid">
   <div class="list">
-<%= render 'layouts/browseart' %>
-</div class="notifications">
-<% @list.each do |lis| %>
-<% @profile = Profile.find_by(id: lis.profile_id) %>
-<div>
-  <% if logged_in? %>
-  <% if lis.location != nil %>
-    <% if lis.location.event.city == @current_user.city %>
-    <div class="listing mycity">
-  <% elsif lis.location.event.state == @current_user.state %>
-      <div class="listing mystate">
-  <% else %>
-  <div class="listing">
-    <% end %>
-    <% if lis.location.event.end_date > Time.now.to_date - 7 %>
-<%= @profile.name %> is showing at <%= link_to lis.location.name, user_event_location_path(lis.location.event.user, lis.location.event, lis.location) %> for <%= link_to lis.location.event.title, user_event_path(lis.location.event.user, lis.location.event) %> (<%= lis.location.event.start_date.strftime("%a, %b %e, '%y") %> - <%= lis.location.event.end_date.strftime("%a, %b %e, '%y") %>)<br>Add to itinerary?</div>
-<% @listing = lis %>
-      <% @event = Event.find_by(id: lis.location.event.id) %>
-<%= render 'waypoints/addwaypoint' %>
+    <%= render 'layouts/browseart' %>
+  </div class="notifications">
+  <% @list.each do |lis| %>
+    <% @profile = Profile.find_by(id: lis.profile_id) %>
+      <div>
+        <% if logged_in? %>
+          <% if lis.location != nil %>
+            <% if lis.location.event.city == @current_user.city %>
+              <div class="listing mycity withbutton">
+                <% elsif lis.location.event.state == @current_user.state %>
+                  <div class="listing mystate withbutton">
+                  <% else %>
+                    <div class="listing withbutton">
+                    <% end %>
+                    <div class="listtext">
+                      <% if lis.location.event.end_date > Time.now.to_date - 7 %>
+                        <%= @profile.name %>
+                        is showing at
+                        <%= link_to lis.location.name, user_event_location_path(lis.location.event.user, lis.location.event, lis.location) %>
+                        for
+                        <%= link_to lis.location.event.title, user_event_path(lis.location.event.user, lis.location.event) %>
+                        (<%= lis.location.event.start_date.strftime("%a, %b %e, '%y") %>
+                        -
+                        <%= lis.location.event.end_date.strftime("%a, %b %e, '%y") %>)
+                        <% @event = Event.find_by(id: lis.location.event.id) %>
+                          <% @listing = lis %>
+                          </div>
+                          <div class="right">
+                            <% waypoint_exists = false %>
+                              <% @current_user.waypoints.each do |w| %>
 
-<% end %>
-<% end %>
-<% end %>
-<% end %>
-</div>
-</div>
+                                <% if w.location_id == lis.location_id %>
+
+                                  <% waypoint_exists = true %>
+                                    <% @waypoint = Waypoint.find_by(location_id: lis.location_id) %>
+                                      <% p @waypoint %><% end %>
+
+                                    <% end %>
+
+                                    <% if waypoint_exists == false %>
+                                      <%= render 'waypoints/addwaypoint' %>
+                                    <% else %>
+                                      <span class="x">
+                                        <%= button_to user_event_waypoint_path(@user, @event, @waypoint), method: :delete do %>
+                                        <i class="material-icons">
+                                          location_off
+                                        </i>
+                                      <% end %>
+                                    </span>
+                                  <% end %>
+                                </div>
+                              </div>
+
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>

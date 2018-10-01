@@ -33,7 +33,7 @@ flash.now[:error] = msg
    @waypoint.event_id = @event.id
      @waypoint.save
     if @waypoint.save
-      redirect_to user_event_waypoints_path(@user, @event)
+      redirect_back(fallback_location: user_event_waypoints_path(@user, @event))
     else
       render 'new'
       msg = @waypoint.errors.full_messages
@@ -48,12 +48,13 @@ flash.now[:error] = msg
 
   def destroy
     @waypoint.destroy
+    redirect_back(fallback_location: user_event_waypoints_path(@user, @event))
   end
 
   private
 
   def waypoint_params
-    params.require(:waypoint).permit(:location_id, :user_id)
+    params.require(:waypoint).permit(:location_id, :user_id, :event_id)
     end
 
     def find_waypoint

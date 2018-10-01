@@ -1,4 +1,4 @@
-<div class="eventbuttons"><div><%= link_to "All Artists", user_event_artists_path(@user, @event) %></div><div><%=link_to "All Studios", user_event_locations_path(@user, @event) %></div><div>My Itinerary</div></div>
+<div class="eventbuttons"><div><%= link_to "All Artists", user_event_artists_path(@user, @event) %></div><div><%=link_to "All Studios", user_event_locations_path(@user, @event) %></div><div><%= link_to "My Itinerary", user_event_waypoints_path(@user, @event) %></div></div>
 <div class="flexcenter">
   <div>
     <div class="mapouter eventmap"><div class="gmap_canvas"><iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%= @event.neighborhood + "%2C%20" + @event.city + "%2C%20" + @event.state %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
@@ -6,29 +6,31 @@
 
 <div class="floateventdesc"><h3><%= @event.title %></h3>
 <%= @event.neighborhood + ", " + @event.city + ", " + @event.state %>
-
-<%= @event.start_date.strftime("%A, %B %e, %Y") %> to <%= @event.end_date.strftime("%A, %B %e, %Y") %><br>
-<% @length = (@event.end_date - @event.start_date).to_i + 1 %>
-<%= @length %> days long<br>
-<% p @length %>
-<% if @length >= 7 %>
-  <% @days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
-  <% @days.each do |d| %>
-  <%= d %>
-  <% end %>
-  <% elsif @length < 7 && @length > 0 %>
-  <% x = 0 %>
-  <% @days = [] %>
-  <% while x < @length %>
-  <%= (@event.start_date + x.day).strftime("%A") %>
-  <% @days << (@event.start_date + x.day).strftime("%A") %>
-  <% x+= 1 %>
-  <% end %>
-  <% p @days %>
-  <% elsif @length <= 0 %>
-  Invalid date, end time must be after start time.
-<% end %></div>
+</div>
 <div class="eventdesc">
+
+  <div class="center"><%= @event.start_date.strftime("%A, %B %e, %Y") %> <br>to<br> <%= @event.end_date.strftime("%A, %B %e, %Y") %><br>
+  <% @length = (@event.end_date - @event.start_date).to_i + 1 %>
+  <%# @length %>
+   <!-- days long<br> -->
+  <% p @length %>
+  <% if @length >= 7 %>
+    <% @days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+    <% @days.each do |d| %>
+    <%# d %>
+    <% end %>
+    <% elsif @length < 7 && @length > 0 %>
+    <% x = 0 %>
+    <% @days = [] %>
+    <% while x < @length %>
+    <%# (@event.start_date + x.day).strftime("%A") %>
+    <% @days << (@event.start_date + x.day).strftime("%A") %>
+    <% x+= 1 %>
+    <% end %>
+    <% elsif @length <= 0 %>
+    Invalid date, end time must be after start time.
+  <% end %></div>
+
 <p> <%= @event.description %></p></div>
 
 

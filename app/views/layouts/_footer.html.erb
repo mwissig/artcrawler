@@ -1,12 +1,9 @@
 <% if logged_in? %>
 <div class='footer'>
-<div><div class="dot">
-  <%= link_to user_path(@current_user) do %>
-  <i class="material-icons">
-account_circle
-</i>
+<div>    <%= link_to user_path(@current_user) do %><div class="dot smavatar" style="background-image: url('<%= @current_user.avatar.attachment.nil? ? 'https://picsum.photos/100/100/headshot?lock=' + @current_user.id.to_s + '' :  rails_blob_url(@current_user.avatar) %>')">
+</div>
 <% end %>
-</div></div>
+</div>
 <div><div class="dot">
     <%= link_to mymaps_path do %>
   <i class="material-icons">

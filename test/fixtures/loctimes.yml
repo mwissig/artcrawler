@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_id: 1
+  sunday: false
+  sun_open: 2018-09-30 21:21:27
+  sun_close: 2018-09-30 21:21:27
+  monday: false
+  mon_open: 2018-09-30 21:21:27
+  mon_close: 2018-09-30 21:21:27
+  tuesday: false
+  tues_open: 2018-09-30 21:21:27
+  tues_close: 2018-09-30 21:21:27
+  wednesday: false
+  weds_open: 2018-09-30 21:21:27
+  weds_close: 2018-09-30 21:21:27
+  thursday: false
+  thurs_open: 2018-09-30 21:21:27
+  thurs_close: 2018-09-30 21:21:27
+  friday: false
+  fri_open: 2018-09-30 21:21:27
+  fri_close: 2018-09-30 21:21:27
+  saturday: false
+  sat_open: 2018-09-30 21:21:27
+  sat_close: 2018-09-30 21:21:27
+
+two:
+  location_id: 1
+  sunday: false
+  sun_open: 2018-09-30 21:21:27
+  sun_close: 2018-09-30 21:21:27
+  monday: false
+  mon_open: 2018-09-30 21:21:27
+  mon_close: 2018-09-30 21:21:27
+  tuesday: false
+  tues_open: 2018-09-30 21:21:27
+  tues_close: 2018-09-30 21:21:27
+  wednesday: false
+  weds_open: 2018-09-30 21:21:27
+  weds_close: 2018-09-30 21:21:27
+  thursday: false
+  thurs_open: 2018-09-30 21:21:27
+  thurs_close: 2018-09-30 21:21:27
+  friday: false
+  fri_open: 2018-09-30 21:21:27
+  fri_close: 2018-09-30 21:21:27
+  saturday: false
+  sat_open: 2018-09-30 21:21:27
+  sat_close: 2018-09-30 21:21:27

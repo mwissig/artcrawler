@@ -1,0 +1,15 @@
+<div class="login">
+<%= form_for(@user) do |f| %>
+<%= f.email_field :email, placeholder: 'Enter Your Email Address', required: true %><br>
+<div class='logingrid'><div>
+<label>You are here mainly as a...</label></div><div><%= f.select :primary_use, ["Visitor", "Artist", "Organizer"], required: true %></div></div>
+<%= f.text_field :city, placeholder: "What city are you in?" %>
+<div class='logingrid'><div>
+<label>What state are you in?</label>
+</div><div><%= f.select :state, options_for_select(us_states) %></div></div>
+<%# f.password_field :password, placeholder: 'Update Password', required: true %><br>
+<%# f.password_field :password_confirmation, placeholder: 'Confirm Password', required: true %><br>
+<%= f.file_field :avatar %>
+<%= f.submit 'Submit Changes', id:'submit' %>
+<% end %>
+</div>

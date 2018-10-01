@@ -4,6 +4,7 @@
   <% @profile = Profile.new %>
 <% end %>
 <div class="login profilenew">
+    <div class="infofloat">Hi <%= @user.email %> from <%= @user.city %>, <%= @user.state %> <br>Your account is private.<br>If you would like to make a public profile, you can register as an artist here.</div>
   <h3>Create a Profile as an Artist</h3>
 <%= form_for([@current_user, @profile]) do |f| %>
 <%= f.text_field :name, placeholder: 'Please enter your name', required: true %>
@@ -23,7 +24,8 @@
 <%= f.select :secondary_medium, ["Architecture", "Book Arts", "Ceramics", "Conceptual Art", "Craft", "Dance", "Design", "Drawing", "Fashion", "Fiber", "Film and Video", "Illustration", "Installation", "Jewelry", "Mixed Media", "Music", "New Media", "Painting", "Performance", "Photography", "Printmaking", "Relational Art", "Sculpture", "Sound", "Street Art"] %>
 </div></div>
 <%= f.text_area :statement, placeholder: "Please write a brief artist's statement or bio." %>
-<%= f.file_field :image %> Upload one image to represent your work.
+Upload one image to represent your work.
+<%= f.file_field :image %>
 <%= f.submit 'Create Artist Profile', id:'submit' %>
 <% end %>
 </div>

@@ -41,26 +41,45 @@ user has many Waypoints
 waypoint belongs to user
 waypoint has one location
 location belongs_to :waypoint
+
+rails g model Loctime location_id:integer sunday:boolean sun_open:time sun_close:time monday:boolean mon_open:time mon_close:time tuesday:boolean tues_open:time tues_close:time wednesday:boolean weds_open:time weds_close:time thursday:boolean thurs_open:time thurs_close:time friday:boolean fri_open:time fri_close:time saturday:boolean sat_open:time sat_close:time
+
+rails g controller Loctimes new index edit show
+enable delete for waypoints
+show avatar on user page
+style forms
+new profile saves params
 ===================================================================
 NOT DONE YET
 ================================================================
 
 enable Delete for Bookmarks
+
 ajax bookmarks and add to itinerary
+
 custom map markers
-enable edit and delete for Users
+
+enable edit and delete for Users (edit yes)
+
 enable edit and delete for profiles
+
 enable edit and delete for events
+
 enable edit and delete for locations
+
 enable edit and delete for listings
+
+link to edit profile from profile
+
+
 
 validators on everything
 sort locations by day of week open
 sort artists by location
 avatar upload page
-show avatar on user page
+
 create search functions for events, artists, and locations
-style forms
+
 
 f.input :my_boolean, as: :boolean do
   f.check_box :my_boolean, {}, "true", "false"
@@ -71,11 +90,11 @@ or
 f.input :my_boolean, input_html: { checked: @object.my_boolean }
 
 
-rails g model Time location_id:integer sunday:boolean sun_open:time sun_close:time monday:boolean mon_open:time mon_close:time tuesday:boolean tues_open:time tues_close:time wednesday:boolean weds_open:time weds_close:time thursday:boolean thurs_open:time thurs_close:time friday:boolean fri_open:time fri_close:time saturday:boolean sat_open:time sat_close:time
+
 
 rails g model Attribute asl:boolean child_friendly:boolean gn_restrooms:boolean spanish:boolean seating:boolean no_stairs:boolean wheelchair:boolean
 free_admission:boolean free_art:boolean free_drinks:boolean free_food:boolean free_merch:boolean free_raffle:boolean buy_admission:boolean buy_art:boolean buy_drinks:boolean buy_food:boolean buy_merch:boolean buy_raffle:boolean official:boolean benefit:boolean checkpoint:boolean juried_show:boolean open_call:boolean solo_show:boolean duo_show:boolean group_show:boolean
 
 
-rails g controller Times new index edit show
+
 rails g controller Attributes new index edit show

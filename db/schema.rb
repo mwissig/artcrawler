@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_28_155146) do
+ActiveRecord::Schema.define(version: 2018_10_01_012127) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +73,33 @@ ActiveRecord::Schema.define(version: 2018_09_28_155146) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "approved"
+  end
+
+  create_table "loctimes", force: :cascade do |t|
+    t.integer "location_id"
+    t.boolean "sunday"
+    t.time "sun_open"
+    t.time "sun_close"
+    t.boolean "monday"
+    t.time "mon_open"
+    t.time "mon_close"
+    t.boolean "tuesday"
+    t.time "tues_open"
+    t.time "tues_close"
+    t.boolean "wednesday"
+    t.time "weds_open"
+    t.time "weds_close"
+    t.boolean "thursday"
+    t.time "thurs_open"
+    t.time "thurs_close"
+    t.boolean "friday"
+    t.time "fri_open"
+    t.time "fri_close"
+    t.boolean "saturday"
+    t.time "sat_open"
+    t.time "sat_close"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", force: :cascade do |t|

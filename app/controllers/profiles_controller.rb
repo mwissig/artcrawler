@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
 
     def update
       if @profile.update(profile_params)
-        flash[:notice] = 'User updated successfully'
+        flash[:notice] = 'Profile updated successfully'
         redirect_to user_path(@user)
       else
         render 'edit'
@@ -23,10 +23,10 @@ flash.now[:error] = msg
     end
 
     def create
-      @profile = @user.build_profile
+      @profile = @user.build_profile(profile_params)
       @profile.save
       if @profile.save
-        redirect_to user_profile_path(@user, @profile)
+        redirect_to user_path(@user)
       else
         render 'new'
         msg = @profile.errors.full_messages

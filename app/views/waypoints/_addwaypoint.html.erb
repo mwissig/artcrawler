@@ -1,4 +1,9 @@
 <%= form_for([@user, @event, @waypoint]) do |f| %>
 <%= f.hidden_field :location_id, value: @listing.location.id %>
-<%= f.submit 'Add', id:'submit' %>
+<button>
+<i class="material-icons">
+add_location
+</i>
+</button>
+
 <% end %>

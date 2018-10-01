@@ -1,5 +1,5 @@
       <div class="paginate digg_pagination" id="paginate"><%= will_paginate @profiles, :previous_label => '←', :next_label => '→' %></div>
-<div class="browseart" id='browseart'>
+<div class="browseart" id='browseart' style="grid-template-columns: 30vw, 50vw !important">
   <% @profiles.each do |pr| %>
     <div class="artist"  id="artist<%=pr.id.to_s %>" style="background-image: url('<%= pr.image.attachment.nil? ? 'https://picsum.photos/200/300/?random/' + pr.id.to_s + '' :  rails_blob_url(pr.image) %>')" onclick="zoomIn('<%=pr.id.to_s %>')">
     <div class="artistname">  <%= link_to user_path(pr.user) do %>
