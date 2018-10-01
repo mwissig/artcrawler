@@ -35,3 +35,27 @@
     margin-top: 25px;
     float:left;
 }
+
+.floatleft {
+  float: left;
+  color: black;
+  font-weight: bold;
+}
+.floatleft .material-icons {
+  color: red;
+}
+.allListings {
+  padding-top: 0;
+  padding-bottom: 70px;
+  position: fixed;
+  overflow: scroll;
+  top: 50vh;
+  bottom: 0;
+  width: 100%;
+}
+.allListings h2 {
+  margin: 2px;
+}
+.highlight {
+  background-color: yellow;
+}

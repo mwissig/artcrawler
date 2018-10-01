@@ -1,62 +1,113 @@
-
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <% locations = [] %>
-<% i = 1 %>
-<% if @event.neighborhood != nil %>
-<% @neigh = @event.neighborhood + ",+" %>
-<% end %>
-<% center_request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + @neigh +  @event.city + ",+" + @event.state + "&key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y") %>
-<%  center_response = JSON.parse(center_request.body) %>
-<% clat = center_response['results'][0]['geometry']['location']['lat'] %>
- <% clng = center_response['results'][0]['geometry']['location']['lng'] %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y" type="text/javascript"></script>
-    <div id="map" style="width: 100vw; height: 50vh; z-index: 20;"></div>
-<% @locations.each do |lo| %>
-<%= link_to lo.address, user_event_location_listings_path(@user, @event, lo) %><br>
-<% location = [] %>
-<% address = lo.address.gsub(" ", "+") %>
-<% location << "<div class='mapmarker'><div class='title'><a href='" + user_event_location_listings_path(@user, @event, lo) + "'>" + lo.name + "</a></div><div class='loctype'>" + lo.loc_type + "<br>" + lo.listings.length.to_s + " artists</div><img src='https://loremflickr.com/50/50/colorful?lock=" + lo.id.to_s + "'/></div>" %>
-<% request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y") %>
-<%  response = JSON.parse(request.body) %>
-<% lat = response['results'][0]['geometry']['location']['lat'] %>
- <% lng = response['results'][0]['geometry']['location']['lng'] %>
+  <% i = 1 %>
+    <% if @event.neighborhood != nil %>
+      <% @neigh = @event.neighborhood + ",+" %><% end %>
+      <% center_request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + @neigh +  @event.city + ",+" + @event.state + "&key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y") %>
+        <%  center_response = JSON.parse(center_request.body) %>
+          <% clat = center_response['results'][0]['geometry']['location']['lat'] %>
+            <% clng = center_response['results'][0]['geometry']['location']['lng'] %>
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y" type="text/javascript"></script>
+              <div id="map" style="width: 100vw; height: 50vh; z-index: 20;"></div>
+              <div class="allListings">
+                <% @locations.each do |lo| %>
+                  <% if lo.listings.first != nil %>
+                    <% @profile = Profile.find_by(id: lo.listings.first.profile_id) %><% end %>
+                    <% if lo.listings.second != nil %>
+                      <% @profile2 = Profile.find_by(id: lo.listings.second.profile_id) %><% end %>
+                      <% if logged_in? %>
+                        <% if lo != nil %>
 
-<% location << lat %>
-<% location << lng %>
-<% location << i %>
-<% i += 1 %>
-<% locations << location %>
-  <% end %>
-  <script>
-  var locations = <%= raw locations %>;
-  var clat = <%= clat %>;
-  var clng = <%= clng %>
+                          <div class="listing" id="listing<%= i %>">
 
-  </script>
+                            <div class="floatleft">
 
-<script src="/assets/gmap3.js?body=1" type="text/javascript"></script>
- <script type="text/javascript">
+                              <i class="material-icons" onclick="openOnMap(<%= i-1 %>)">
+                                place
 
-   var map = new google.maps.Map(document.getElementById('map'), {
-     zoom: 13,
-                      center: new google.maps.LatLng(clat, clng),
-     mapTypeId: google.maps.MapTypeId.ROADMAP
-   });
-   var infowindow = new google.maps.InfoWindow();
+                              </i>
+                              <%= i.to_s %>
+                            </div>
+                          <% end %>
+                          <% street = lo.address.split"," %>
+                            <% if lo.event.end_date > Time.now.to_date - 7 %>
+                              <% if lo.listings.count == 1 %>
+                                <%= @profile.name %>
+                                is
+                                <% @artist = @profile.name %>
+                                  <% elsif lo.listings.count == 2 %>
+                                    <%= @profile.name %>
+                                    and
+                                    <%= @profile2.name %>
+                                    are
+                                    <% @artist = @profile.name + " & " + @profile2.name %>
+                                    <% else %>
+                                      <%= lo.listings.count %>
+                                      artists are
+                                      <% @artist = lo.listings.count.to_s + " artists" %><% end %>
 
-   var marker, i;
+                                      showing at
+                                      <%= lo.name %>.<br>
+                                      <%# render 'waypoints/addwaypoint' %><% end %>
+                                    <% end %>
 
-   for (i = 0; i < locations.length; i++) {
-     marker = new google.maps.Marker({
-       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-       map: map
-     });
+                                    <%= link_to lo.address, user_event_location_listings_path(@user, @event, lo) %></div>
 
-     google.maps.event.addListener(marker, 'click', (function(marker, i) {
-       return function() {
-         infowindow.setContent(locations[i][0]);
-         infowindow.open(map, marker);
-       }
-     })(marker, i));
-   }
- </script>
+                                  <% location = [] %>
+                                    <% address = lo.address.gsub(" ", "+") %>
+                                      <% location << "<div class='mapmarker'><div class='title'>#" + i.to_s + " <a href='" + user_event_location_listings_path(@user, @event, lo) + "'>" + lo.name + "</a></div><div class='loctype'>" + lo.loc_type + "<hr>" + @artist + "<hr>" + street[0] + "</div><img src='https://loremflickr.com/50/50/colorful?lock=" + lo.id.to_s + "'/></div>" %>
+                                        <% request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y") %>
+                                          <%  response = JSON.parse(request.body) %>
+                                            <% lat = response['results'][0]['geometry']['location']['lat'] %>
+                                              <% lng = response['results'][0]['geometry']['location']['lng'] %>
+
+                                                <% location << lat %>
+                                                  <% location << lng %>
+                                                    <% location << i %>
+                                                      <% i += 1 %>
+                                                        <% locations << location %><% end %>
+                                                      </div>
+                                                      <script>
+                                                        var locations = <%= raw locations %>;
+                                                        var clat = <%= clat %>;
+                                                        var clng = <%= clng %>
+                                                      </script>
+
+                                                      <script src="/assets/gmap3.js?body=1" type="text/javascript"></script>
+                                                      <script type="text/javascript">
+                                                        var markers = [];
+                                                        var map = new google.maps.Map(document.getElementById('map'), {
+                                                          zoom: 13,
+                                                          center: new google.maps.LatLng(clat, clng),
+                                                          mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                                           mapTypeControl: false,
+                                                           streetViewControl: false
+                                                        });
+                                                        var infowindow = new google.maps.InfoWindow();
+
+                                                        var marker,
+                                                          i;
+
+                                                        for (i = 0; i < locations.length; i++) {
+                                                          marker = new google.maps.Marker({
+                                                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                            map: map
+                                                          });
+
+                                                          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                                            return function () {
+                                                              infowindow.setContent(locations[i][0]);
+                                                              infowindow.open(map, marker);
+                                                              document.getElementById("listing" + (
+                                                                i + 1
+                                                              ) + "").classList.add('highlight');
+                                                              setTimeout(function () {
+                                                                document.getElementById("listing" + (
+                                                                  i + 1
+                                                                ) + "").classList.remove('highlight');
+                                                              }, 2000);
+                                                            }
+                                                          })(marker, i));
+                                                          markers.push(marker);
+                                                        }
+                                                      </script>

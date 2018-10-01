@@ -47,6 +47,7 @@
         <%= link_to user_path(pr.user) do %>
             <h3><%= pr.name %></h3>
             <% end %>
+            <%= l.location.address %><br>
           <%= pr.primary_medium %>
             <% if pr.secondary_medium != nil && pr.secondary_medium != "" %>
               &

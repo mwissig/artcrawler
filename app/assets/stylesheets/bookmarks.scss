@@ -1,3 +1,17 @@
 // Place all the styles related to the Bookmarks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.listing {
+  margin: 3px 0;
+  background-color: rgb(198, 194, 210);
+  padding: 3px;
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+.mycity {
+  background: rgb(170, 200, 161);
+}
+.mystate {
+  background: rgb(228, 213, 175);
+}

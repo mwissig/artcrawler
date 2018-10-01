@@ -33,6 +33,14 @@ https://www.google.com/maps/place/Bushwick,+Brooklyn,+NY/
 
 rails g model Listing location_id:integer profile_id:integer
 rails g controller Listings new index edit show
+
+rails g model Waypoint location_id:integer user_id:integer
+rails g controller Waypoints new index edit show
+
+user has many Waypoints
+waypoint belongs to user
+waypoint has one location
+location belongs_to :waypoint
 ===================================================================
 NOT DONE YET
 ================================================================
@@ -71,10 +79,3 @@ free_admission:boolean free_art:boolean free_drinks:boolean free_food:boolean fr
 
 rails g controller Times new index edit show
 rails g controller Attributes new index edit show
-
-rails g model Waypoint location_id:integer event_id:integer user_id:integer
-rails g controller Waypoints new index edit show
-
-enable maps with waypoints
-
-rails g model Notification

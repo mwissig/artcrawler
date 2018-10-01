@@ -367,6 +367,14 @@ padding: 0 10px;
   overflow: hidden;
   max-height: 100px;
 }
+.artistinfo h3 {
+  margin: 4px 3px;
+}
+.artistinfo a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
 .paginate {
   position: fixed;
   z-index: 12;

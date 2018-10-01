@@ -3,5 +3,27 @@
   <div class="list">
 <%= render 'layouts/browseart' %>
 </div class="notifications">
-If an artist is in an event, show that here</div>
+<% @list.each do |lis| %>
+<% @profile = Profile.find_by(id: lis.profile_id) %>
+<div>
+  <% if logged_in? %>
+  <% if lis.location != nil %>
+    <% if lis.location.event.city == @current_user.city %>
+    <div class="listing mycity">
+  <% elsif lis.location.event.state == @current_user.state %>
+      <div class="listing mystate">
+  <% else %>
+  <div class="listing">
+    <% end %>
+    <% if lis.location.event.end_date > Time.now.to_date - 7 %>
+<%= @profile.name %> is showing at <%= link_to lis.location.name, user_event_location_path(lis.location.event.user, lis.location.event, lis.location) %> for <%= link_to lis.location.event.title, user_event_path(lis.location.event.user, lis.location.event) %> (<%= lis.location.event.start_date.strftime("%a, %b %e, '%y") %> - <%= lis.location.event.end_date.strftime("%a, %b %e, '%y") %>)<br>Add to itinerary?</div>
+<% @listing = lis %>
+      <% @event = Event.find_by(id: lis.location.event.id) %>
+<%= render 'waypoints/addwaypoint' %>
+
+<% end %>
+<% end %>
+<% end %>
+<% end %>
+</div>
 </div>

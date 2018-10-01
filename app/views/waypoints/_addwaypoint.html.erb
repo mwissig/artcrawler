@@ -1,0 +1,4 @@
+<%= form_for([@user, @event, @waypoint]) do |f| %>
+<%= f.hidden_field :location_id, value: @listing.location.id %>
+<%= f.submit 'Add', id:'submit' %>
+<% end %>

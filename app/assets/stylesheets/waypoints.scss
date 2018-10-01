@@ -1,0 +1,37 @@
+// Place all the styles related to the Waypoints controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.waypointsol {
+      text-align: left;
+   list-style: none;
+padding-left: 0;
+   counter-reset: item;
+   margin-top: 0;
+ }
+ .waypointsol li {
+   counter-increment: item;
+   margin-bottom: 5px;
+   background-color: #c6c2d2;
+   margin-bottom: 5px;
+   padding: 3px 8px;
+ }
+ .waypointsol li p {
+   margin: 0;
+   margin-left: 2.6em;
+   margin-bottom: 5px;
+ }
+ .waypointsol li:before {
+   margin-right: 10px;
+   content: counter(item, upper-alpha);
+   background: red;
+   padding: 3px;
+   border-radius: 100%;
+   border: 1px solid white;
+   color: white;
+   width: 1.2em;
+   height: 1.2em;
+   text-align: center;
+   display: inline-block;
+   font-weight: bold;
+ }

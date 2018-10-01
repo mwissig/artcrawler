@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
+  get '/mymaps' => 'pages#mymaps'
   get '/browse' => 'pages#browse'
   get '/events' => 'pages#events'
   get '/events/city' => 'pages#events_by_city'
@@ -20,10 +21,14 @@ Rails.application.routes.draw do
     resources :profiles do
       delete '/delete' => 'profiles#destroy'
     end
+
     resources :bookmarks do
       delete '/delete' => 'bookmarks#destroy'
     end
     resources :events do
+      resources :waypoints do
+        delete '/delete' => 'waypoints#destroy'
+      end
       delete '/delete' => 'events#destroy'
       get '/artists' => 'pages#artists'
       resources :locations do

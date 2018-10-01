@@ -5,16 +5,24 @@ class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
-  p @bookmarks
+    @waypoint = Waypoint.new
     @ids = []
     @user.bookmarks.each do |b|
       @ids << b.profile_id
     end
-    p @ids
+
+    @lisids = []
+   Listing.all.each do |lis|
+     @lisids << lis.profile_id
+   end
+
       pr = Profile.find(@ids)
       pr = Profile.where(id: pr.map(&:id))
-      p pr
+
       @profiles = pr.order(id: :desc).paginate(page: params[:page], per_page: 10)
+      @listings = Listing.all.order('listings.location.event.end_date ASC')
+      @list = Listing.find_by(profile_id: @lisids)
+      @list = Listing.where(profile_id: pr.map(&:id))
   end
 
   def new
