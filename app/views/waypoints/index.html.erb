@@ -62,7 +62,7 @@
                     <% i = 1 %>
                       <% if @event.neighborhood != nil %>
                         <% @neigh = @event.neighborhood + ",+" %><% end %>
-                        <% center_request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + @neigh +  @event.city + ",+" + @event.state + "&key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y") %>
+                        <% center_request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + @neigh +  @event.city + ",+" + @event.state + "&key=ENV['GOOGLE_KEY']") %>
                           <%  center_response = JSON.parse(center_request.body) %>
                             <% clat = center_response['results'][0]['geometry']['location']['lat'] %>
                               <% clng = center_response['results'][0]['geometry']['location']['lng'] %>
@@ -72,7 +72,7 @@
                                 var clat = <%= clat %>;
                                 var clng = <%= clng %>;
                               </script>
-                                <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDJkEKxoYJlOJF2vWKpzp1rDfztV_BJ6_Y"></script>
+                                <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=ENV['GOOGLE_KEY']"></script>
 
 
 
