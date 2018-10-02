@@ -5,7 +5,12 @@
   <div class="paginate digg_pagination" id="paginate"><%= will_paginate @listings, :previous_label => '←', :next_label => '→' %></div>
   <div class="location_scrollgrid">
     <div class="locationinfo" style="background-image: url('<%= @location.image.attachment.nil? ? 'https://loremflickr.com/320/240/building?lock=' + @location.id.to_s + '' :  rails_blob_url(@location.image) %>')">
-
+<div class="info">
+  <i class="material-icons">
+info
+</i>
+<p><%= @location.description %></p>
+</div>
       <% if logged_in? %>
 
         <% waypoint_exists = false %>

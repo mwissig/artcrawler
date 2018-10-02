@@ -64,6 +64,11 @@ enable delete for listings
 enable edit and delete for events
 
 
+show descriptions on event and location pages
+
+allow view when not logged in
+
+
 ===================================================================
 NOT DONE YET
 ================================================================
@@ -74,25 +79,12 @@ ajax bookmarks and add to itinerary
 
 custom map markers
 
-show descriptions on event and location pages
-
-allow view when not logged in
-
-
-
-
-
-
-
-
-
 validators on everything
 sort locations by day of week open
 sort artists by location
 avatar upload page
 
 create search functions for events, artists, and locations
-
 
 f.input :my_boolean, as: :boolean do
   f.check_box :my_boolean, {}, "true", "false"
@@ -102,13 +94,8 @@ or
 
 f.input :my_boolean, input_html: { checked: @object.my_boolean }
 
-
-
-
 rails g model Attribute asl:boolean child_friendly:boolean gn_restrooms:boolean spanish:boolean seating:boolean no_stairs:boolean wheelchair:boolean
 free_admission:boolean free_art:boolean free_drinks:boolean free_food:boolean free_merch:boolean free_raffle:boolean buy_admission:boolean buy_art:boolean buy_drinks:boolean buy_food:boolean buy_merch:boolean buy_raffle:boolean official:boolean benefit:boolean checkpoint:boolean juried_show:boolean open_call:boolean solo_show:boolean duo_show:boolean group_show:boolean
-
-
 
 rails g controller Attributes new index edit show
 

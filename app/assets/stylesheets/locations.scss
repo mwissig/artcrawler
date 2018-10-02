@@ -64,3 +64,28 @@ right: 10px;
 .highlight {
   background-color: yellow;
 }
+.info {
+  position: absolute;
+top: 10px;
+  left: 10px;
+  z-index: 300;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  transition: all .5s;
+  padding: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  text-align: left;
+}
+.info:hover {
+  background-color: white;
+  width: auto;
+  max-width: 90vw;
+  height: auto;
+  max-height: 30vh;
+  overflow: scroll;
+}
+.info p {
+  text-align: justify;
+}
