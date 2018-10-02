@@ -1,3 +1,36 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// #event_start_date_2i {
+//   width: 30vw;
+// }
+//
+// #event_start_date_3i {
+//   width: 30vw;
+// }
+//
+// #event_start_date_li {
+//   width: 30vw;
+// }
+
+.newevent {
+  margin-top: 450px;
+  margin-bottom: 100px;
+}
+input[type="checkbox"] {
+  width: auto;
+}
+.date {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 5px;
+  width: 90%;
+}
+.date select {
+  width: 100%;
+}
+.newloc {
+  margin-top: 300px;
+  margin-bottom: 100px;
+}

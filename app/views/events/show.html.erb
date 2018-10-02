@@ -1,13 +1,35 @@
-<div class="eventbuttons"><div><%= link_to "All Artists", user_event_artists_path(@user, @event) %></div><div><%=link_to "All Studios", user_event_locations_path(@user, @event) %></div><div><%= link_to "My Itinerary", user_event_waypoints_path(@user, @event) %></div></div>
+<div class="eventbuttons">
+  <div><%= link_to "All Artists", user_event_artists_path(@user, @event) %></div>
+  <div><%=link_to "All Studios", user_event_locations_path(@user, @event) %></div>
+  <% if logged_in? %>
+  <div><%=link_to "Add Studio", new_user_event_location_path(@user, @event) %></div>
+  <div><%= link_to "My Itinerary", user_event_waypoints_path(@user, @event) %></div>
+<% end %>
+</div>
+
 <div class="flexcenter">
   <div>
-    <div class="mapouter eventmap"><div class="gmap_canvas"><iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%= @event.neighborhood + "%2C%20" + @event.city + "%2C%20" + @event.state %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
+    <div class="mapouter eventmap">
+
+                <div class="gmap_canvas"><iframe id="gmap_canvas" src="https://maps.google.com/maps?q=<%= @event.neighborhood + "%2C%20" + @event.city + "%2C%20" + @event.state %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div>
 
 
 <div class="floateventdesc"><h3><%= @event.title %></h3>
 <%= @event.neighborhood + ", " + @event.city + ", " + @event.state %>
 </div>
-<div class="eventdesc">
+<div class="eventdesc">      <%if logged_in? %>
+        <% if @event.user_id == @current_user.id %>
+                  <div class="editloc" id="editevent">
+
+                      <%= button_to edit_user_event_path(@user, @event), method: :get do %>
+                    <i class="material-icons">
+                      edit
+                      </i>
+                    <% end %>
+
+
+                </div>  <% end %>
+                <% end %>
 
   <div class="center"><%= @event.start_date.strftime("%A, %B %e, %Y") %> <br>to<br> <%= @event.end_date.strftime("%A, %B %e, %Y") %><br>
   <% @length = (@event.end_date - @event.start_date).to_i + 1 %>

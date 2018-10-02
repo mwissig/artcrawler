@@ -1,5 +1,5 @@
       <div class="paginate digg_pagination" id="paginate"><%= will_paginate @profiles, :previous_label => '←', :next_label => '→' %></div>
-<div class="browseart" id='browseart' style="grid-template-columns: 30vw, 50vw !important">
+<div class="browseart" id='browseart'>
   <% @profiles.each do |pr| %>
     <div class="artist"  id="artist<%=pr.id.to_s %>" style="background-image: url('<%= pr.image.attachment.nil? ? 'https://picsum.photos/200/300/?random/' + pr.id.to_s + '' :  rails_blob_url(pr.image) %>')" onclick="zoomIn('<%=pr.id.to_s %>')">
     <div class="artistname">  <%= link_to user_path(pr.user) do %>
@@ -9,11 +9,17 @@
 
         <span class="bookmarkbutton">
           <% if Bookmark.where(user_id: @current_user.id, profile_id: pr.id).exists? %>
-            <%# link_to user_bookmark_delete_path([@current_user, bk]), method: :delete do %>
-            <i class="material-icons" style="color:yellow;">
-              star_rate
-              </i>
-              <%# end %>
+          <% if Bookmark.where(user_id: @current_user.id, profile_id: pr.id).exists? %>
+                <% bk = @current_user.bookmarks.find_by(profile_id: pr.id) %>
+
+
+                <%= form_tag user_bookmark_delete_path(@current_user, bk), method: "delete", data: {confirm: "Delete bookmark?", remote: true} do %>
+                  <%= hidden_field :id, value: bk.id %>
+      <button>      <i class="material-icons" style="color:yellow;">
+              bookmark
+              </i></button>
+      <% end %>
+                <% end %>
               <% else %>
 
                 <%= form_for([@current_user, @bookmark]) do |f| %>

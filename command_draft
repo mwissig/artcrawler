@@ -49,27 +49,40 @@ enable delete for waypoints
 show avatar on user page
 style forms
 new profile saves params
+
+enable edit and delete for Users
+enable edit and delete for profiles
+
+link to edit profile from profile
+
+enable edit and delete for locations
+
+enable Delete for Bookmarks
+enable delete for listings
+
+
+enable edit and delete for events
+
+
 ===================================================================
 NOT DONE YET
 ================================================================
 
-enable Delete for Bookmarks
+
 
 ajax bookmarks and add to itinerary
 
 custom map markers
 
-enable edit and delete for Users (edit yes)
+show descriptions on event and location pages
 
-enable edit and delete for profiles
+allow view when not logged in
 
-enable edit and delete for events
 
-enable edit and delete for locations
 
-enable edit and delete for listings
 
-link to edit profile from profile
+
+
 
 
 
@@ -98,3 +111,5 @@ free_admission:boolean free_art:boolean free_drinks:boolean free_food:boolean fr
 
 
 rails g controller Attributes new index edit show
+
+deploy

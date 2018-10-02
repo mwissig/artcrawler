@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
-
   get 'loctimes/new'
   get 'loctimes/index'
   get 'loctimes/edit'
   get 'loctimes/show'
   root 'pages#home'
 
+  get '/help' => 'pages#help'
+  get '/about' => 'pages#about'
   get '/mymaps' => 'pages#mymaps'
   get '/browse' => 'pages#browse'
   get '/events' => 'pages#events'
+    get '/events/my' => 'pages#myevents'
   get '/events/city' => 'pages#events_by_city'
-    get '/events/state' => 'pages#events_by_state'
-      get '/events/all' => 'pages#events_all'
+  get '/events/state' => 'pages#events_by_state'
+  get '/events/all' => 'pages#events_all'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -36,10 +38,10 @@ Rails.application.routes.draw do
       delete '/delete' => 'events#destroy'
       get '/artists' => 'pages#artists'
       resources :locations do
-            delete '/delete' => 'locations#destroy'
-            resources :listings do
-                  delete '/delete' => 'listings#destroy'
-            end
+        delete '/delete' => 'locations#destroy'
+        resources :listings do
+          delete '/delete' => 'listings#destroy'
+        end
       end
     end
   end

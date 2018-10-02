@@ -33,6 +33,24 @@ palette
 <% end %>
 </div></div>
 </div>
+<% else %>
+<div class='footer'>
+  <div><div class="dot">
+    <%= link_to events_path do %>
+    <i class="material-icons">
+  public
+  </i>
+  <% end %>
+  </div></div><div><div class="dot">
+    <%= link_to browse_path do %>
+    <i class="material-icons">
+  palette
+  </i>
+  <% end %>
+  </div></div>
+
+</div>
+
 <% end %>
 <footer>
 

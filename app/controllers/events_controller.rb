@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: %i[show edit destroy update]
+  before_action :find_event, only: %i[show edit update]
   before_action :find_user, only: %i[show index edit update]
 
   def index
@@ -18,7 +18,7 @@ class EventsController < ApplicationController
   def update
     if @event.update(event_params)
       flash[:notice] = 'User updated successfully'
-      redirect_to user_path(@user)
+      redirect_to user_event_path(@user, @event)
     else
       render 'edit'
       msg = @event.errors.full_messages
@@ -48,7 +48,9 @@ flash.now[:error] = msg
   def edit; end
 
   def destroy
+    @event = Event.find(params[:event_id])
     @event.destroy
+    redirect_to events_my_path
   end
 
   private

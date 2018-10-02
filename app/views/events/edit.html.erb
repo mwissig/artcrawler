@@ -1,2 +1,30 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<div class="flexcenter">
+<div class="newevent login newevent">
+<h3>Edit Event</h3>
+<%= form_for([@user, @event]) do |f| %>
+
+<%= f.text_field :title, placeholder: "Name of Your Event", required: true %><br>
+<label>The first day of your event</label>
+<div class="date">
+<%= f.date_select "start_date", start_year: Date.today.year,order: [:month, :day, :year], required: true  %></div>
+<label>The last day of your event</label>
+<div class="date">
+<%= f.date_select "end_date", start_year: Date.today.year,order: [:month, :day, :year], required: true  %>
+</div>
+<%= f.text_field :neighborhood, placeholder: "Neighborhood" %><br>
+<%= f.text_field :city, placeholder: "City", required: true  %><br>
+<div class='logingrid'><div><label>What state is the event in?<br><small>*only US locations currently supported</small></label></div><div><%= f.select :state, options_for_select(us_states), required: true  %></div></div>
+<%= f.text_area :description, placeholder: "Describe your event.", required: true  %><br>
+<%= f.text_field :website, placeholder: "http://www.yourorganization.com" %><br>
+<div class='logingrid'><div><label>Make event private? (You will have to manually approve all entries)</label></div>
+<div>
+<%= f.check_box :private, check_box_html: { checked: @event.private } %></div></div>
+<%= f.submit 'Edit Event', id:'submit' %>
+<% end %>
+<hr>
+<span class="x delete">
+<%= button_to user_event_delete_path(@user, @event), id: @event.id, method: :delete, data: {confirm: "Are you sure? \n This action will permanently delete this event and all locations and artists listed under it.", remote: true} do %>
+Delete event
+<% end %></span>
+</div>
+</div>

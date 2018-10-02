@@ -1,0 +1,7 @@
+<% if @current_user.profile != nil %>
+<span class="addlisting x delete" id="deletelisting">
+        <% @listing = @location.listings.where(proile_id: @current_user.profile.id) %>
+<%= button_to user_event_location_listing_delete_path(@user, @event, @location, @listing), method: :delete, data: {confirm: "Remove yourself from this listing?", remote: true} do %>
+I'm not showing here
+<% end %></span>
+<% end %>

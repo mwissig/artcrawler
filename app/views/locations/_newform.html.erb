@@ -1,9 +1,12 @@
 <div class="flexcenter">
-<div class="newevent">
+<div class="newloc login">
+  <h3>Create a Location</h3>
+
 <%= form_for([@user, @event, @location]) do |f| %>
 <%= f.text_field :name, placeholder: "Building Name" %><br>
-<%= f.select :loc_type, options_for_select(location_types) %><br>
-<%= f.text_area :description %><br>
+<div class='logingrid'><div><label>What kind of place is it?</label></div><div><%= f.select :loc_type, options_for_select(location_types) %></div></div>
+<%= f.text_area :description, placeholder: "Please describe your location." %><br>
+<label>Please make sure the address is formatted correctly; it will be used to locate it on a map.</label>
 <%= f.text_field :address, placeholder: "Full Address" %><br>
 <%= f.text_field :suite, placeholder: "Suite/Studio Number" %><br>
 <% if @event.private == true %>
@@ -11,7 +14,8 @@
 <% else %>
 <%= f.hidden_field :approved, value: true %>
 <% end %>
-<%= f.submit 'Go', id:'submit' %>
+  <h4>You will be able to add yourself to this location as an artist once it has been created.<br>Share a link to the location with other participating artists so they can add themselves.</h4>
+<%= f.submit 'Create Location', id:'submit' %>
 <% end %>
 </div>
 </div>

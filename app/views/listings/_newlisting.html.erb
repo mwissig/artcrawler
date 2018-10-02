@@ -1,4 +1,6 @@
+<% if @current_user.profile != nil %>
 <div class='addlisting'><%= form_for([@user, @event, @location, @listing]) do |f| %>
-<%= f.submit "I am showing here", :confirm => "This form will add you to this studio listing as an artist. Please confirm that you are showing your work here."  %>
+<%= f.submit data: {confirm: "This action will add you to this listing as an artist. \n Please confirm that you are showing work at this location. \n If you are only a visitor, please press the Visit button below.", remote: true}  %>
 <% end %>
 </div>
+<% end %>

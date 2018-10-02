@@ -1,0 +1,19 @@
+<div class="paginate digg_pagination" id="paginate"><%= will_paginate @events, :previous_label => '←', :next_label => '→' %></div>
+<div class="flexcenter">
+  <div class="container eventsbox">
+    <% if logged_in? %>
+    <h2>Events You Created</h2>
+      <% if @events.where(user_id: @current_user.id) != nil %>
+                <%= render 'events/eventblurb' %>
+                <% else %>
+                You have no events
+
+                <% end %>
+                                <%= render 'events/footer' %>
+                  <% end %>
+
+                          <div class="login"><%= button_to "New Event", new_user_event_path(@current_user), method: :get %></div>
+              </div>
+            </div>
+
+            <%= render 'layouts/state-svg-defs' %>

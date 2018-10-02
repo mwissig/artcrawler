@@ -43,6 +43,12 @@ class PagesController < ApplicationController
   end
     end
 
+    def myevents
+      if logged_in?
+        @events = Event.all.where(user_id: @current_user.id).order(start_date: :asc).paginate(page: params[:page], per_page: 20)
+    end
+    end
+
   def artists
     @listings = []
     @event = Event.find(params[:event_id])

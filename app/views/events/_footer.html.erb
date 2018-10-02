@@ -1,5 +1,13 @@
 <% if logged_in? %>
 <div class="eventsfooter">
+
+      <% if @events.where(user_id: @current_user.id) != nil %>
+  <%= link_to events_my_path do %>
+  <i class="material-icons">
+  person
+  </i>
+  <% end %>
+    <% end %>
 <%= link_to events_city_path do %>
       <i class="material-icons">
         location_city

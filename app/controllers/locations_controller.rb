@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :find_location, only: %i[show edit destroy update]
+  before_action :find_location, only: %i[show edit  update]
   before_action :find_event
   before_action :find_user
 
@@ -17,7 +17,7 @@ class LocationsController < ApplicationController
   def update
     if @location.update(location_params)
       flash[:notice] = 'User updated successfully'
-      redirect_to user_path(@user)
+      redirect_to user_event_location_listings_path(@user, @event, @location)
     else
       render 'edit'
       msg = @location.errors.full_messages
@@ -40,13 +40,12 @@ flash.now[:error] = msg
     end
   end
 
-  def show
-  end
-
   def edit; end
 
   def destroy
+            @location = Location.find(params[:location_id])
     @location.destroy
+        redirect_to user_event_path(@user, @event)
   end
 
   private

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show edit index update destroy]
+  before_action :find_user, only: %i[show edit index update]
   before_action :new_profile, only: %i[index update show destroy]
  before_action :skip_password_attribute, only: :update
 
@@ -23,6 +23,7 @@ flash.now[:error] = msg
   end
 
   def show
+    @bookmark = Bookmark.new
   end
 
   def edit; end
@@ -40,7 +41,12 @@ flash.now[:error] = msg
   end
 
   def destroy
+    if logged_in?
+    @user = @current_user
     @user.destroy
+    session[:user_id] = nil
+    redirect_to root_path
+  end
   end
 
   private

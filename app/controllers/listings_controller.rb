@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-    before_action :find_listing, only: %i[show edit destroy update]
+    before_action :find_listing, only: %i[show edit update]
     before_action :find_location
     before_action :find_event
     before_action :find_user
@@ -49,7 +49,11 @@ class ListingsController < ApplicationController
     def edit; end
 
     def destroy
-      @listing.destroy
+      if logged_in?
+         @listing = @location.listings.where(profile_id: @current_user.profile.id)
+      @listing.destroy_all
+              redirect_to user_event_location_listings_path(@user, @event, @location)
+            end
     end
 
     private

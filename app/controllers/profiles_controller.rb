@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-    before_action :find_profile, only: %i[show edit destroy update]
+    before_action :find_profile, only: %i[show edit update]
     before_action :find_user, only: %i[show index edit new update create]
 
     def index
@@ -40,7 +40,12 @@ flash.now[:error] = msg
     def edit; end
 
     def destroy
+      if logged_in?
+        @user = @current_user
+      @profile = @current_user.profile
       @profile.destroy
+      redirect_to user_path(@user)
+    end
     end
 
     private

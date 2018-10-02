@@ -1,12 +1,11 @@
 
     <% if logged_in? %>
       <% if @current_user.id == @user.id && @current_user.primary_use = "Artist" %>
-        <%# render "profiles/newprofile" %><br>
         <% end %>
         <% if @current_user.id == @user.id %>
           <div class="usercontrols">
             <ul>
-            <% if logged_in? %>
+
               <li>
                 <%= link_to logout_path, method: :delete do %>
                 Log out
@@ -17,11 +16,18 @@
               Edit my account
             <% end %>
           </li>
+<% if @current_user.profile != nil %>
+          <li>
+            <%= link_to edit_user_profile_path(@current_user, @current_user.profile) do %>
+            Edit my profile
+          <% end %>
+        </li>
+          <% end %>
         <% end %>
       </ul>
     </div>
   <% end %>
-<% end %>
+
 
 
 
@@ -34,7 +40,7 @@
           <% if @current_user.id != @user.id %>
             This is a private profile.
           <% else %>
-          
+
             <%= render 'profiles/newprofilefromuserpage' %>
           <% end %>
         <% else %>
@@ -45,7 +51,36 @@
   <div class="artist zoom profile" style="background-image: url('<%= @user.profile.image.attachment.nil? ? 'https://picsum.photos/200/300/?random/' + @user.profile.id.to_s + '' :  rails_blob_url(@user.profile.image) %>')">
     <div class="statement-grid" id="statement-grid">
       <div class="statement" onclick="expandProfileTop()">
-        <div class="avatar" id="avatar" style="background-image: url('<%= @user.avatar.attachment.nil? ? 'https://loremflickr.com/100/100/headshot?lock=' + @user.profile.id.to_s + '' :  rails_blob_url(@user.avatar) %>')"></div>
+
+        <div class="avatar" id="avatar" style="background-image: url('<%= @user.avatar.attachment.nil? ? 'https://loremflickr.com/100/100/headshot?lock=' + @user.profile.id.to_s + '' :  rails_blob_url(@user.avatar) %>')">
+
+          <% if logged_in? %>
+            <span class="bookmarkbutton bookmarkprofile">
+              <% if Bookmark.where(user_id: @current_user.id, profile_id: @user.profile.id).exists? %>
+    <% p "xtjcyjfujfyuuykuymyumuimui" %>
+                    <% bk = @current_user.bookmarks.find_by(profile_id: @user.profile.id) %>
+                    <%= form_tag user_bookmark_delete_path(@current_user, bk), method: "delete", data: {confirm: "Delete bookmark?", remote: true} do %>
+                      <%= hidden_field :id, value: bk.id %>
+                      <button>      <i class="material-icons" style="color:yellow;">
+                        bookmark
+                      </i></button>
+                    <% end %>
+
+
+                  <% else %>
+    <% p "------------------------" %>
+                    <%= form_for([@current_user, @bookmark]) do |f| %>
+                    <%= f.hidden_field :profile_id, value: @user.profile.id %>
+                    <button>
+                      <i class="material-icons">
+                        bookmark
+                      </i>
+                    </button>
+                  <% end %>
+                  <% end %>
+                <span>
+                    <% end %>
+        </div>
         <h3><%= @user.profile.name %></h3>
         <ul>
           <li>
@@ -74,6 +109,48 @@
       <% end %>
     <% end %>
   </div>
+</div>
+
+</div>
+<% end %>
+<% if !logged_in? && @user.profile != nil %>
+<div class="artist zoom profile" style="background-image: url('<%= @user.profile.image.attachment.nil? ? 'https://picsum.photos/200/300/?random/' + @user.profile.id.to_s + '' :  rails_blob_url(@user.profile.image) %>')">
+  <div class="statement-grid" id="statement-grid">
+    <div class="statement" onclick="expandProfileTop()">
+
+
+
+      <div class="avatar" id="avatar" style="background-image: url('<%= @user.avatar.attachment.nil? ? 'https://loremflickr.com/100/100/headshot?lock=' + @user.profile.id.to_s + '' :  rails_blob_url(@user.avatar) %>')"></div>
+
+
+
+      <h3><%= @user.profile.name %></h3>
+      <ul>
+        <li>
+          <i class="fab fa-instagram"></i>
+          <a href="https://www.instagram.com/<%= @user.profile.instagram %>/">@<%= @user.profile.instagram %></a>
+        </li>
+        <li>
+          <i class="fas fa-folder-open"></i>
+          <a href="<%= @user.profile.portfolio %>"><%= @user.profile.portfolio %></a>
+        </li>
+      </ul>
+      Media:
+      <%= @user.profile.primary_medium %>
+      <% if @user.profile.secondary_medium != nil && @user.profile.secondary_medium != "" %>
+        and
+        <%= @user.profile.secondary_medium %><br>
+        <%= @user.city + ", " + @user.state %>
+        <p>Show upcoming and recent events here</p>
+      </div>
+      <div class="statement" onclick="expandProfileBottom()">
+
+        <p><%= @user.profile.statement %></p>
+
+      </div>
+
+  <% end %>
+</div>
 </div>
 
 </div>

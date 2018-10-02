@@ -1,2 +1,41 @@
-<h1>Profiles#edit</h1>
-<p>Find me in app/views/profiles/edit.html.erb</p>
+<% if logged_in? %>
+
+<% if @current_user.profile != nil %>
+<%   @profile = @current_user.profile %>
+<% else %>
+  <% @profile = Profile.new %>
+<% end %>
+<div class="login profilenew">
+  <h3>Edit Your Profile</h3>
+<%= form_for([@current_user, @profile]) do |f| %>
+<%= f.text_field :name, placeholder: 'Please enter your name', required: true %>
+<%= f.text_field :portfolio, placeholder: 'Your portfolio web site address' %>
+<%= f.text_field :instagram, placeholder: 'Your Instagram handle without the @' %>
+<div class="logingrid">
+  <div>
+  <label>Your primary medium...</label></div><div>
+
+<%= f.select :primary_medium, ["Architecture", "Book Arts", "Ceramics", "Conceptual Art", "Craft", "Dance", "Design", "Drawing", "Fashion", "Fiber", "Film and Video", "Illustration", "Installation", "Jewelry", "Mixed Media", "Music", "New Media", "Painting", "Performance", "Photography", "Printmaking", "Relational Art", "Sculpture", "Sound", "Street Art"] %>
+</div></div>
+
+<div class="logingrid">
+  <div>
+  <label>Your secondary medium...</label></div><div>
+
+<%= f.select :secondary_medium, ["Architecture", "Book Arts", "Ceramics", "Conceptual Art", "Craft", "Dance", "Design", "Drawing", "Fashion", "Fiber", "Film and Video", "Illustration", "Installation", "Jewelry", "Mixed Media", "Music", "New Media", "Painting", "Performance", "Photography", "Printmaking", "Relational Art", "Sculpture", "Sound", "Street Art"] %>
+</div></div>
+<%= f.text_area :statement, placeholder: "Please write a brief artist's statement or bio." %>
+<%= f.file_field :image %> Upload one image to represent your work.
+<%= f.submit 'Edit Artist Profile', id:'submit' %>
+<% end %>
+<hr><br>
+<span class="x delete">
+  <%= button_to user_profile_delete_path(@user, @profile), method: :delete, data: {confirm: "Are you sure? \n This action will permanently delete your profile and all data related to participating in events as an artist. \n You will still have an account and the ability to bookmark and map events.", remote: true} do %>
+  Delete your profile <i class="material-icons">
+    delete
+  </i>
+<% end %>
+</span>
+
+</div>
+<% end %>

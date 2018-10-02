@@ -1,4 +1,5 @@
 <div class="login">
+  <h3>Edit Your Profile</h3>
 <%= form_for(@user) do |f| %>
 <%= f.email_field :email, placeholder: 'Enter Your Email Address', required: true %><br>
 <div class='logingrid'><div>
@@ -9,7 +10,15 @@
 </div><div><%= f.select :state, options_for_select(us_states) %></div></div>
 <%# f.password_field :password, placeholder: 'Update Password', required: true %><br>
 <%# f.password_field :password_confirmation, placeholder: 'Confirm Password', required: true %><br>
+Upload an image for your avatar here.
 <%= f.file_field :avatar %>
 <%= f.submit 'Submit Changes', id:'submit' %>
+<% end %><hr><br>
+<span class="x delete">
+  <%= button_to user_delete_path(@user), method: :delete, data: {confirm: "Are you sure? \n This action will permanently delete your account, your profile, and any content you have created.", remote: true} do %>
+  Delete your account <i class="material-icons">
+    delete
+  </i>
 <% end %>
+</span>
 </div>

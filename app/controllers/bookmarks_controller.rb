@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :find_bookmark, only: %i[show edit destroy update]
+  before_action :find_bookmark, only: %i[show edit update]
   before_action :find_user, only: %i[show index]
 
   def index
@@ -60,7 +60,11 @@ end
   def edit; end
 
   def destroy
+    if logged_in?
+    @bookmark = Bookmark.find(params[:bookmark_id])
     @bookmark.destroy
+            redirect_back(fallback_location: browse_path)
+  end
   end
 
   private

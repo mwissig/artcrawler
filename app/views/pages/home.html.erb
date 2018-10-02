@@ -1,24 +1,35 @@
 <div class="flexcenter home">
   <div class="fill">
-  <% if logged_in? %>
-  <ul>
-  <li><%= button_to "Log out", logout_path, method: :delete %></li>
-  <li><%= button_to "New Event", new_user_event_path(@current_user), method: :get %></li>
-    <li><%= button_to "Edit My Profile", edit_user_path(@current_user), method: :get %></li>
-  <% else %>
-  <li><%= button_to "Log in", login_path, method: :get  %></li>
-    <li><%= button_to "Create an Account", register_path, method: :get  %></li>
-  <% end %>
-</ul>
+    <% if logged_in? %>
+      <ul>
+        <li><%= button_to "Log out", logout_path, method: :delete %></li>
+        <li><%= button_to "New Event", new_user_event_path(@current_user), method: :get %></li>
+        <li>
+          <%= button_to "Edit my account", edit_user_path(@current_user), method: :get %>
+        </li>
+        <% if @current_user.profile != nil %>
+          <li>
+            <%= button_to "Edit my profile", edit_user_profile_path(@current_user, @current_user.profile), method: :get %>
+          </li>
+        <% end %>
 
-<% if logged_in? %>
-  <% if @current_user.primary_use = "Artist" %>
-    <%= render 'layouts/artist' %>
-    <% elsif @current_user.primary_use = "Visitor" %>
-      <%= render 'layouts/visitor' %>
-      <% elsif @current_user.primary_use = "Organizer" %>
-        <%= render 'layouts/organizer' %>
+
+      <% else %>
+        <li><%= button_to "Log in", login_path, method: :get %></li>
+        <li><%= button_to "Create an Account", register_path, method: :get %></li>
       <% end %>
+      <li><%= button_to "Help", help_path, method: :get %></li>
+      <li><%= button_to "About", about_path, method: :get %></li>
+    </ul>
+
+    <% if logged_in? %>
+      <% if @current_user.primary_use = "Artist" %>
+        <%# render 'layouts/artist' %>
+        <% elsif @current_user.primary_use = "Visitor" %>
+          <%# render 'layouts/visitor' %>
+          <% elsif @current_user.primary_use = "Organizer" %>
+            <%# render 'layouts/organizer' %>
           <% end %>
-</div>
-</div>
+        <% end %>
+      </div>
+    </div>

@@ -21,6 +21,20 @@
                   <%= f.submit 'Visit', id:'submit' %>
                 <% end %>
               </div>
+<% if @location.user_id == @current_user.id %>
+              <div class="editloc">
+
+                  <%= button_to edit_user_event_location_path(@user, @event, @location), method: :get do %>
+                <i class="material-icons">
+                  edit
+                  </i>
+                <% end %>
+
+
+            </div>
+            <% end %>
+
+
             <% end %>
           <% end %>
 
@@ -97,6 +111,10 @@
                         <% end %>
                       </div>
                     <% end %>
+                          <% if logged_in? %>
                     <% if @you_are_listed == false %>
                       <%= render 'newlisting' %>
+                      <% else %>
+                      <%= render 'deletelisting' %>
+                        <% end %>
                     <% end %>

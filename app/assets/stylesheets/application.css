@@ -379,7 +379,7 @@ footer {
 
 .browseart {
   display: grid;
-  grid-template-columns: 30vw, 50vw !important;
+  grid-template-columns: repeat(2, 50%);
   visibility: visible;
   z-index: 0;
   transition: visibility .1s linear;
@@ -402,6 +402,7 @@ footer {
 .browselisting {
   display: grid;
   grid-template-columns: 30% 70%;
+  grid-auto-rows: 100px;
   visibility: visible;
   z-index: 0 !important;
   transition: visibility .1s linear;
@@ -505,7 +506,9 @@ padding: 0 10px;
   color: red;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
 }
-
+.artistpage {
+  left: 20vw;
+}
 .artistname {
   position: absolute !important;
   background: linear-gradient(transparent, rgba(27, 27, 27, 0.8) 20%);
