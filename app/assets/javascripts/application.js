@@ -89,7 +89,7 @@ function geocoderLoop(){
 
 
 var geocodeAddress = (address, id) => {
-  axios.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&components=country:US&key=ENV['GOOGLE_KEY']").then((response) => {
+  axios.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&components=country:US&key=" + ENV["GOOGLE_KEY"] + "").then((response) => {
 
     var mylat = mycoords[0];
     var mylng = mycoords[1];

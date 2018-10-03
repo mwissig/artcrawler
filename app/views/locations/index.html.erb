@@ -3,11 +3,11 @@
   <% i = 1 %>
     <% if @event.neighborhood != nil %>
       <% @neigh = @event.neighborhood + ",+" %><% end %>
-      <% center_request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + @neigh +  @event.city + ",+" + @event.state + "&key=ENV['GOOGLE_KEY']") %>
+      <% center_request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + @neigh +  @event.city + ",+" + @event.state + "&key="  + ENV["GOOGLE_KEY"] + "") %>
         <%  center_response = JSON.parse(center_request.body) %>
           <% clat = center_response['results'][0]['geometry']['location']['lat'] %>
             <% clng = center_response['results'][0]['geometry']['location']['lng'] %>
-              <script src="https://maps.googleapis.com/maps/api/js?key=ENV['GOOGLE_KEY']" type="text/javascript"></script>
+              <script src="https://maps.googleapis.com/maps/api/js?key="  + ENV["GOOGLE_KEY"] + "" type="text/javascript"></script>
               <div id="map2" style="width: 100vw; height: 50vh; z-index: 20;"></div>
               <div class="allListings">
                 <div class="listing">
@@ -115,7 +115,7 @@
                                                   <% @artist = "No listings" %><% end %>
                                                   <% location << "<div class='mapmarker'><div class='title'>#" + i.to_s + " <a href='" + user_event_location_listings_path(@user, @event, lo) + "'>" + lo.name + "</a></div><div class='loctype'>" + lo.loc_type + "<hr>" + @artist + "<hr>" + @street[0].to_s + "</div><img src='https://loremflickr.com/50/50/colorful?lock=" + lo.id.to_s + "'/></div>" %>
 
-                                                    <% request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=ENV['GOOGLE_KEY']") %>
+                                                    <% request = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key="  + ENV["GOOGLE_KEY"] + "") %>
                                                       <%  response = JSON.parse(request.body) %>
                                                         <% lat = response['results'][0]['geometry']['location']['lat'] %>
                                                           <% lng = response['results'][0]['geometry']['location']['lng'] %>
