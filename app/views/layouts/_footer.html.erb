@@ -1,6 +1,6 @@
 <% if logged_in? %>
 <div class='footer'>
-<div>    <%= link_to user_path(@current_user) do %><div class="dot smavatar" style="background-image: url('<%= @current_user.avatar.attachment.nil? ? 'https://picsum.photos/100/100/headshot?lock=' + @current_user.id.to_s + '' :  rails_blob_url(@current_user.avatar) %>')">
+<div>    <%= link_to user_path(@current_user) do %><div class="dot smavatar" style="background-image: url('<%= @current_user.avatar.attachment.nil? ? 'https://loremflickr.com/100/100/headshot?lock=' + @current_user.id.to_s + '' :  rails_blob_url(@current_user.avatar) %>')">
 </div>
 <% end %>
 </div>

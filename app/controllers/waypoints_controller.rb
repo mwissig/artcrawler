@@ -17,9 +17,8 @@ class WaypointsController < ApplicationController
   def update
     if @waypoint.update(waypoint_params)
       flash[:notice] = 'User updated successfully'
-      redirect_to user_path(@user)
+      redirect_back(fallback_location: user_event_waypoints_path(@user, @event))
     else
-      render 'edit'
       msg = @waypoint.errors.full_messages
 flash.now[:error] = msg
     end
