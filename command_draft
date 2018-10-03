@@ -69,6 +69,7 @@ show descriptions on event and location pages
 allow view when not logged in
 
 
+deploy
 ===================================================================
 NOT DONE YET
 ================================================================
@@ -98,5 +99,3 @@ rails g model Attribute asl:boolean child_friendly:boolean gn_restrooms:boolean 
 free_admission:boolean free_art:boolean free_drinks:boolean free_food:boolean free_merch:boolean free_raffle:boolean buy_admission:boolean buy_art:boolean buy_drinks:boolean buy_food:boolean buy_merch:boolean buy_raffle:boolean official:boolean benefit:boolean checkpoint:boolean juried_show:boolean open_call:boolean solo_show:boolean duo_show:boolean group_show:boolean
 
 rails g controller Attributes new index edit show
-
-deploy
