@@ -5,17 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+purp = ["Visitor", "Artist", "Organizer"]
+cities = ["Brooklyn", "Queens", "New York", "Long Island City"]
 
 100.times do
   i = rand(0..2)
-  purp = ["Visitor", "Artist", "Organizer"]
-  cities = ["Brooklyn", "Queens", "New York", "Long Island City"]
   c = rand(0..3)
   User.create(
     email: Faker::Internet.unique.email,
     primary_use: purp[i],
     password: "password",
+    password_confirmation: "password",
     city: cities[c],
     state: "NY"
   )
