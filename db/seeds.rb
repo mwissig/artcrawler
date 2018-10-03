@@ -47,124 +47,132 @@
 #     @profile.save!
 # end
 #
-
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Studio Building",
-  name: "Brooklyn Expo Center",
-  address: "72 Noble St, Brooklyn, NY 11222",
-  description: "The Brooklyn EXPO is located in the thriving neighborhood of Greenpoint, Brooklyn. It is a new concept for a historical neighborhood that is now emerging as a frontier of culture in the Brooklyn scene. The Brooklyn EXPO is a unique physical structure with excellent access to New York City and multiple hubs of transportation including both NYC Airports.",
-  suite: "",
-  approved: true
+#
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Studio Building",
+#   name: "Brooklyn Expo Center",
+#   address: "72 Noble St, Brooklyn, NY 11222",
+#   description: "The Brooklyn EXPO is located in the thriving neighborhood of Greenpoint, Brooklyn. It is a new concept for a historical neighborhood that is now emerging as a frontier of culture in the Brooklyn scene. The Brooklyn EXPO is a unique physical structure with excellent access to New York City and multiple hubs of transportation including both NYC Airports.",
+#   suite: "",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 2,
+#   loc_type: "Studio",
+#   name: "310 Nassau Ave",
+#   address: "310 Nassau Ave, Brooklyn, NY 11222",
+#   description: "Visit our studio. We have wine and cheese!",
+#   suite: "2B",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 3,
+#   loc_type: "Studio",
+#   name: "Kingsland Studio",
+#   address: "Kingsland	194 Kingsland Ave, Brooklyn, NY 11222",
+#   description: "Come by and check out my newest work!",
+#   suite: "4",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Studio Building",
+#   name: "Driggs Studios",
+#   address: "142 Driggs Ave, Brooklyn, NY 11222",
+#   description: "A new studio building with a rock climbing wall.",
+#   suite: "",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Studio Building",
+#   name: "Calyer House",
+#   address: "106 Calyer St, Brooklyn, NY 11222",
+#   description: "A new studio building with a rock climbing wall.",
+#   suite: "",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 7,
+#   loc_type: "Studio",
+#   name: "67 West St",
+#   address: "67 West St, Brooklyn, NY 11222",
+#   description: "Please stop by and check out my new light sculptures.",
+#   suite: "",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Studio Building",
+#   name: "Greenpoint Collective",
+#   address: "248 Freeman St, Brooklyn, NY 11222",
+#   description: "The Greenpoint Collective was founded in 2017 and is celebrating its 1 year anniversary.",
+#   suite: "",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Performance Venue",
+#   name: "Sadie's",
+#   address: "220 Dupont St, Brooklyn, NY 11222",
+#   description: "Music, drinks, and dance.",
+#   suite: "",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Bar",
+#   name: "Rat King",
+#   address: "1011 Manhattan Ave, Brooklyn, NY 11222",
+#   description: "Must be 21 to attend",
+#   suite: "G",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Gallery",
+#   name: "Gouda Gallery",
+#   address: "1047 Manhattan Ave, Brooklyn, NY 11222",
+#   description: "Group show benefit of artists all around Greenpoint to fund this event.",
+#   suite: "",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Studio",
+#   name: "147 Greenpoint",
+#   address: "147 Greenpoint Ave, Brooklyn, NY 11222",
+#   description: "Come listen to our new sound installation",
+#   suite: "",
+#   approved: true
+# )
+# Location.create(
+#   event_id: 1,
+#   user_id: 1,
+#   loc_type: "Gallery",
+#   name: "Microscope Gallery",
+#   address: "1329 Willoughby Avenue, Brooklyn, NY 11237",
+#   description: "Microscope Gallery is a contemporary art gallery located at 1329 Willoughby Avenue in Brooklyn, NY 11237. It was founded by artists and curators Elle Burchill and Andrea Monti and opened in September 2010. The gallery specializes in showing time-based works, particularly film and performance art.",
+#   suite: "2B",
+#   approved: true
+# )
+25.times do
+    a = rand(1..12)
+    b = rand(2..48)
+Listing.create(
+  location_id: a,
+  profile_id: b
 )
-Location.create(
-  event_id: 1,
-  user_id: 2,
-  loc_type: "Studio",
-  name: "310 Nassau Ave",
-  address: "310 Nassau Ave, Brooklyn, NY 11222",
-  description: "Visit our studio. We have wine and cheese!",
-  suite: "2B",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 3,
-  loc_type: "Studio",
-  name: "Kingsland Studio",
-  address: "Kingsland	194 Kingsland Ave, Brooklyn, NY 11222",
-  description: "Come by and check out my newest work!",
-  suite: "4",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Studio Building",
-  name: "Driggs Studios",
-  address: "142 Driggs Ave, Brooklyn, NY 11222",
-  description: "A new studio building with a rock climbing wall.",
-  suite: "",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Studio Building",
-  name: "Calyer House",
-  address: "106 Calyer St, Brooklyn, NY 11222",
-  description: "A new studio building with a rock climbing wall.",
-  suite: "",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 7,
-  loc_type: "Studio",
-  name: "67 West St",
-  address: "67 West St, Brooklyn, NY 11222",
-  description: "Please stop by and check out my new light sculptures.",
-  suite: "",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Studio Building",
-  name: "Greenpoint Collective",
-  address: "248 Freeman St, Brooklyn, NY 11222",
-  description: "The Greenpoint Collective was founded in 2017 and is celebrating its 1 year anniversary.",
-  suite: "",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Performance Venue",
-  name: "Sadie's",
-  address: "220 Dupont St, Brooklyn, NY 11222",
-  description: "Music, drinks, and dance.",
-  suite: "",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Bar",
-  name: "Rat King",
-  address: "1011 Manhattan Ave, Brooklyn, NY 11222",
-  description: "Must be 21 to attend",
-  suite: "G",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Gallery",
-  name: "Gouda Gallery",
-  address: "1047 Manhattan Ave, Brooklyn, NY 11222",
-  description: "Group show benefit of artists all around Greenpoint to fund this event.",
-  suite: "",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Studio",
-  name: "147 Greenpoint",
-  address: "147 Greenpoint Ave, Brooklyn, NY 11222",
-  description: "Come listen to our new sound installation",
-  suite: "",
-  approved: true
-)
-Location.create(
-  event_id: 1,
-  user_id: 1,
-  loc_type: "Gallery",
-  name: "Microscope Gallery",
-  address: "1329 Willoughby Avenue, Brooklyn, NY 11237",
-  description: "Microscope Gallery is a contemporary art gallery located at 1329 Willoughby Avenue in Brooklyn, NY 11237. It was founded by artists and curators Elle Burchill and Andrea Monti and opened in September 2010. The gallery specializes in showing time-based works, particularly film and performance art.",
-  suite: "2B",
-  approved: true
-)
+end
