@@ -93,8 +93,8 @@ var geocodeAddress = (address, id) => {
 
     var mylat = mycoords[0];
     var mylng = mycoords[1];
-    var endlat = response.data.results[0].geometry.location.lat;
-    var endlng = response.data.results[0].geometry.location.lng;
+    var endlat = mycoords[0];
+    var endlng = mycoords[1];
     calculateDistance(mylat,mylng,endlat,endlng, id);
   }).catch((error) => {
     console.log(error);
