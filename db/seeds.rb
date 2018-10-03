@@ -16,8 +16,8 @@
     email: Faker::Internet.unique.email,
     primary_use: purp[i],
     password: "password",
-    :city => cities[c],
-    :state => "NY"
+    city: cities[c],
+    state: "NY"
   )
 end
 
